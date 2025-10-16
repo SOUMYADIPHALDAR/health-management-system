@@ -47,7 +47,7 @@ header .profile-icon i:hover {
 
 /* Side panel (hidden by default) */
 .side-panel {
-  width: 220px;
+  width: 0;
   height: 100vh;
   position: fixed;
   z-index: 1000;
@@ -64,7 +64,7 @@ header .profile-icon i:hover {
 
 .side-panel i {
   font-size: 18px;
-  color: #a6e9f1;
+  color: #d4fbff;
 }
 
 .side-panel a {
@@ -112,83 +112,66 @@ header .profile-icon i:hover {
   margin-bottom: 10px;
 }
 
-/* Progress Section */
+/* Weekly Progress Section */
 .progress {
-  margin: 20px;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 40px auto;
+  
+
 }
 
 .progress h2 {
-  margin-bottom: 25px;
-  color: #17636b;
- 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  color: rgb(10, 67, 71) ;
+  margin-bottom: 20px;
 }
 
+.progress h2 i {
+  color: #00d2b8;
+  font-size: 22px;
+}
+
+/* Each Bar Container */
 .bar {
-  background: #ddd;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
 .bar span {
-  position: absolute;
-  left: 10px;
-  top: 5px;
+  width: 40px;
+  text-align: right;
   color: #333;
-  font-size: 14px;
-}
-
-.fill {
-  height: 25px;
-  background: linear-gradient(90deg, #00e5b0, #00bcd4);
-}
-
-/* Banner section 
-.banner {
-  font-size: 1.5rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 1rem 2rem;
+  font-size: 15px;
+}
+
+/* Bar Track */
+.bar-track {
+  background: #e6e8eb;
+  height: 18px;
   border-radius: 10px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Cards section 
-.cards {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Bar Fill */
+.bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00e5b0, #00c1ff);
+  transition: width 0.5s ease;
 }
 
-/* Individual card 
-.card {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Card icons 
-.card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
 
 /* Responsive design */
 @media (max-width: 600px) {
