@@ -23,10 +23,13 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    Gender:{
+    gender:{
         type: String,
         enum: [male, female, others],
         require: true
+    },
+    refreshToken:{
+        type: String,
     }
 
 }, {timestamps: true});
