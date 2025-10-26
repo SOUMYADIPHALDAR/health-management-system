@@ -23,10 +23,17 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    avatarPublicId:{
+        type: String,
+        require: true
+    },
     Gender:{
         type: String,
         enum: [male, female, others],
         require: true
+    },
+    refreshToken:{
+        type: String,
     }
 
 }, {timestamps: true});
