@@ -15,5 +15,6 @@
 
     function saveProfile() {
       alert("Profile updated successfully!");
+      window.location.href ="profile.html"
       return false; // Prevent actual form submission for demo
     }
