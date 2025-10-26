@@ -1,46 +1,48 @@
-const asynHandler = require("../utils/asyncHandler.js");
+const asyncHandler = require("../utils/asyncHandler.js");
 const apiError = require("../utils/apiError.js");
 const apiResponse = require("../utils/apiResponse.js");
 const User = require("../models/user.model.js");
 const multer = require("../middlewares/multer.middleware.js");
 const uploadImageToCloudinary = require("../config/cloudinary.js");
+
 const tokenAccess = async (checkUserId) => {
-  const useridFound = await User.findbyId(checkUserId);
+  const useridFound = await User.findById(checkUserId);
   const accessToken = useridFound.generateAccessToken(checkUserId);
   const refreshToken = useridFound.generateRefreshToken(checkUserId);
   useridFound.refreshToken = refreshToken;
-  await useridFound.save({ validatebeforeSave: true });
+  await useridFound.save({ validateBeforeSave: true });
   return { accessToken, refreshToken };
 };
 
-const RegisterUser = asynHandler(async (req, res) => {
-  const { FullName, UserName, email, password, Gender } = req.body;
-  if (!FullName || !UserName || !email || !password || !Gender) {
+const RegisterUser = asyncHandler(async (req, res) => {
+  const { fullName, userName, email, password, gender } = req.body;
+  if (!fullName || !userName || !email || !password || !gender) {
     throw new apiError(400, "All fields are required");
   }
-  const existingUser = await User.findOne({ $or: [{ UserName }, { email }] });
+  const existingUser = await User.findOne({ $or: [{ userName }, { email }] });
   if (existingUser) {
-    throw new apiError(400, "User already exist");
+    throw new apiError(400, "User already exists");
   }
-  const AvatarLocalPath = req.file?.path;
-  if (!AvatarLocalPath) {
+  console.log(req.file);
+  const avatarLocalPath = req.file?.path;
+  if (!avatarLocalPath) {
     throw new apiError(400, "File path not found");
   }
-  const Avatar = await uploadImageToCloudinary(AvatarLocalPath);
-  if (!Avatar) {
+  const avatar = await uploadImageToCloudinary(avatarLocalPath);
+  if (!avatar) {
     throw new apiError(400, "Response not found");
   }
 
   const updatedUser = await User.create({
-    FullName,
-    UserName,
+    fullName,
+    userName,
     email,
     password,
-    Gender,
-    avatar: Avatar.secure_url,
-    avatarPublicId: Avatar.public_id,
+    gender,
+    avatar: avatar.secure_url,
+    avatarPublicId: avatar.public_id,
   });
-  const createdUser = await User.findbyId(updatedUser._id).select(
+  const createdUser = await User.findById(updatedUser._id).select(
     "-password -refreshToken"
   );
   if (!createdUser) {
@@ -49,10 +51,10 @@ const RegisterUser = asynHandler(async (req, res) => {
 
   return res
     .status(201)
-    .json(new apiResponse(200, createdUser, "User Registered Sucessfully"));
+    .json(new apiResponse(200, createdUser, "User Registered Successfully"));
 });
 
-const logInUser = asynHandler(async (req, res) => {
+const logInUser = asyncHandler(async (req, res) => {
   const { userName, email, password } = req.body;
 
   if (!userName || !email) {
@@ -65,16 +67,16 @@ const logInUser = asynHandler(async (req, res) => {
   }
   const checkPassword = await checkUser.isPasswordCorrect(password);
   if (!checkPassword) {
-    throw new apiError(400, "Password is incoreect");
+    throw new apiError(400, "Password is incorrect");
   }
 
   const { accessToken, refreshToken } = await tokenAccess(checkUser._id);
 
-  const logedinUser = await User.findbyId(checkUser._id).select(
-    "-password -refreshtoken"
+  const logedinUser = await User.findById(checkUser._id).select(
+    "-password -refreshToken"
   );
   const option = {
-    httponly: true,
+    httpOnly: true,
     secure: true,
   };
   return res
@@ -85,7 +87,7 @@ const logInUser = asynHandler(async (req, res) => {
       new apiResponse(
         200,
         { user: logedinUser, accessToken, refreshToken },
-        "User logged in sucessfully"
+        "User logged in successfully"
       )
     );
 });
