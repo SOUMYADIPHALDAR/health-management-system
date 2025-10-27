@@ -1,48 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edit Profile</title>
+  <title>Profile</title>
   <link rel="stylesheet" href="editProfile.css" />
-</head>
-<body>
-  <header>
-    <span class="back-btn" onclick="goBack()">←</span>
-    Edit Profile
-  </header>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
-  <div class="edit-container">
-    <form class="edit-form" onsubmit="return saveProfile()">
-      
-      <div class="profile-pic-section">
-        <img id="preview" src="https://via.placeholder.com/120" alt="Profile Photo" />
-        <label for="upload" class="upload-btn">Change Photo</label>
-        <input type="file" id="upload" accept="image/*" onchange="previewImage(event)" hidden />
+</head>
+
+<body>
+  <div class="profile-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div>
+        <h2 class="logo">Track Yourself</h2>
+        <ul>
+          <li><a href="dashboard.html"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+          <li class="active"><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
+          <li><a href=""><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+          <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
+          <li><a href=""><i class="fa-solid fa-gear"></i> Settings</a></li>
+          <li><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
       </div>
 
-      <label>Full Name</label>
-      <input type="text" id="name" value="Ananya Bera" required />
+    </div>
 
-      <label>Email</label>
-      <input type="email" id="email" value="ananya@example.com" required />
-
-      <label>Age</label>
-      <input type="number" id="age" value="20" required />
-
-      <label>Height (ft)</label>
-      <input type="text" id="height" value="5.2" required />
-
-      <label>Weight (kg)</label>
-      <input type="text" id="weight" value="50" required />
-
-      <label>Goal</label>
-      <textarea id="goal" rows="3" required>Build muscle and stay fit</textarea>
-
-      <button type="submit" class="save-btn">Save Changes</button>
-    </form>
+    <!-- Main Section -->
+    <div class="main">
+      <div class="edit-container">
+        <form class="edit-form" onsubmit="return saveProfile()">
+    
+          <div class="profile-pic-section">
+            <img id="preview" src="images/userimage.jpg" alt="Profile Photo" />
+            <button  class="upload-btn">Change Photo</button>
+            <input type="file" id="upload" accept="image/*" onchange="previewImage(event)" hidden />
+          </div>
+          <div class="info">
+          <label>Full Name</label>
+          <input type="text" id="name" placeholder="your name" required />
+          </div>
+          <div class="info">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="sample@gmail.com" required />
+          </div>
+          <div class="info">
+          <label>Age</label>
+          <input type="number" id="age" placeholder="your age" required />
+          </div>
+          <div class="info">
+          <label>Height (ft)</label>
+          <input type="text" id="height" placeholder="your height" required />
+          </div>
+          <div class="info">
+          <label>Weight (kg)</label>
+          <input type="text" id="weight" placeholder="your weight" required />
+          </div>
+          <div class="info">
+          <label>Goal</label>
+          <textarea id="goal" rows="3" placeholder="type your goal"></textarea>
+            </div>
+          <button type="submit" class="save-btn" onclick="saveProfile()">Save Changes</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <script src="editProfile.js"></script>
 </body>
+
 </html>

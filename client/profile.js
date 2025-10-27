@@ -1,7 +1,3 @@
-function goBack() {
-      window.history.back();
+function editProfile() {
+      window.location.href = "editProfile.html";
     }
-
-document.querySelector(".edit-btn").addEventListener("click", () => {
-  alert("Edit profile feature coming soon!");
-});

@@ -23,11 +23,11 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    avatarPublicId:{
+    gender:{
         type: String,
         require: true
     },
-    gender:{
+    Gender:{
         type: String,
         enum: [male, female, others],
         require: true
