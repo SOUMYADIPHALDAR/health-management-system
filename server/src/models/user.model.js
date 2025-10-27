@@ -27,7 +27,7 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
-    Gender:{
+    gender:{
         type: String,
         enum: [male, female, others],
         require: true
