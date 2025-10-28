@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const verifyToken = asyncHandler(async(req, res, next) =>{
     try{
-        const token = req.cookies?accessToken || req.headers["authorization"]?.replace("Bearer", "")
-        if(!token){
+        const token = req.cookies?.accessToken || req.headers["authorization"]?.replace("Bearer", "")
+        if (!token){
             throw new apiError(401, "Access token is missing")
         }
 
