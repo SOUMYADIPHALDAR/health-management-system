@@ -2,7 +2,7 @@ const asyncHandler = require("../utils/asyncHandler.js");
 const apiError = require("../utils/apiError.js");
 const apiResponse = require("../utils/apiResponse.js");
 const User = require("../models/user.model.js");
-const multer = require("../middlewares/multer.middleware.js");
+const jwt = require("jsonwebtoken");
 const uploadImageToCloudinary = require("../config/cloudinary.js");
 
 const tokenAccess = async (checkUserId) => {
@@ -91,7 +91,69 @@ const loggedInUser = asyncHandler(async (req, res) => {
       )
     );
 });
+
+const logOutUser = asyncHandler(async(req, res) => {
+  await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: { refreshToken: undefined }
+    },
+    { new: true}
+  );
+
+  const option = {
+    httpOnly: true,
+    secure: true
+  }
+
+  return res.status(200).json(
+    new apiResponse(200, "", "User logged out successfully..")
+  )
+});
+
+const refreshAccessToken = asyncHandler(async(req, res) => {
+  const isComingRefreshToken = req.cookies.refreshToken || req.body.refreshToken;
+  if (!isComingRefreshToken) {
+    throw new apiError(400, "Unauthorized access..");
+  }
+
+  try {
+    const decodeToken = jwt.verify(isComingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+    const user = await User.findById(decodeToken._id);
+    if (!user) {
+      throw new apiError(401, "Invalid token..");
+    }
+
+    if (isComingRefreshToken !== user.refreshToken) {
+      throw new apiError(401, "Refresh token is invalid or expired..")
+    }
+
+    const { newAccessToken, newRefreshToken } = await tokenAccess(user._id);
+    const option = {
+      httpOnly: true,
+      secure: true
+    }
+
+    return res.status(200)
+    .cookie("accessToken", newAccessToken, option)
+    .cookie("refreshToken", newRefreshToken, option)
+    .json(
+      new apiResponse(
+        200,
+        {accessToken: newAccessToken, refreshToken: newRefreshToken},
+        "Access token refreshed.."
+      )
+    )
+
+  } catch (error) {
+    throw new apiError(500, error.message);
+  }
+})
+
 module.exports = {
   registerUser,
   loggedInUser,
+  logOutUser,
+  refreshAccessToken
 };
