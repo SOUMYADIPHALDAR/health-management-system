@@ -19,6 +19,7 @@ const RegisterUser = asyncHandler(async (req, res) => {
   if (!fullName || !userName || !email || !password || !gender) {
     throw new apiError(400, "All fields are required");
   }
+
   const existingUser = await User.findOne({ $or: [{ userName }, { email }] });
   if (existingUser) {
     throw new apiError(400, "User already exists");
@@ -42,9 +43,11 @@ const RegisterUser = asyncHandler(async (req, res) => {
     avatar: avatar.secure_url,
     avatarPublicId: avatar.public_id,
   });
+
   const createdUser = await User.findById(updatedUser._id).select(
     "-password -refreshToken"
   );
+
   if (!createdUser) {
     throw new apiError(500, "Registration Failed. Try again");
   }
@@ -65,6 +68,7 @@ const logInUser = asyncHandler(async (req, res) => {
   if (!checkUser) {
     throw new apiError(404, "User not found");
   }
+  
   const checkPassword = await checkUser.isPasswordCorrect(password);
   if (!checkPassword) {
     throw new apiError(400, "Password is incorrect");
