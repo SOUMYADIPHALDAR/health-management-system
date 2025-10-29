@@ -4,6 +4,7 @@ const apiResponse = require("../utils/apiResponse.js");
 const User = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
 const uploadImageToCloudinary = require("../config/cloudinary.js");
+const cloudinary = require("cloudinary").v2;
 
 const tokenAccess = async (checkUserId) => {
   const useridFound = await User.findById(checkUserId);
@@ -177,10 +178,54 @@ const changePassword = asyncHandler(async(req, res) => {
   )
 });
 
+const updateAvatar = asyncHandler(async(req, res) => {
+  const avatarLocalPath = req.file?.path;
+  const userId = req.user._id;
+
+  if (!avatarLocalPath) {
+    throw new apiError(404, "Avatar file is required..");
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new apiError(404, "User not found..");
+  }
+
+  if (user.avatarPublicId) {
+    try {
+      await cloudinary.uploader.destroy(user.avatarPublicId,{resource_type: "image"});
+
+    } catch (error) {
+      throw new apiError(500, "Something happend during update avatar..");
+    }
+  }
+
+  const avatar = await uploadImageToCloudinary(avatarLocalPath);
+  if (!avatar.secure_url || !avatar.public_id) {
+    throw new apiError(400, "Failed to upload image..");
+  }
+
+  const updateUser = await User.findByIdAndUpdate(
+    userId,
+    {
+      $set: {
+        avatar: avatar.secure_url,
+        avatarPublicId: avatar.public_id
+      }
+    },
+    {new: true}
+  );
+
+  return res.status(200).json(
+    new apiResponse(200, updateUser, "Avatar updated successfully..")
+  )
+})
+
 module.exports = {
   registerUser,
   loggedInUser,
   logOutUser,
   refreshAccessToken,
-  changePassword
+  changePassword,
+  updateAvatar
 };
