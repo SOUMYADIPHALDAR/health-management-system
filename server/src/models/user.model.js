@@ -23,9 +23,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    gender:{
-        type: String,
-        require: true
+
+    avatarPublicId:{
+        type: String
     },
     Gender:{
         type: String,

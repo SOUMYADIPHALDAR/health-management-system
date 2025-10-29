@@ -4,6 +4,7 @@ const apiResponse = require("../utils/apiResponse.js");
 const User = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
 const uploadImageToCloudinary = require("../config/cloudinary.js");
+const cloudinary = require("cloudinary")
 
 const tokenAccess = async (checkUserId) => {
   const useridFound = await User.findById(checkUserId);
@@ -177,10 +178,45 @@ const changePassword = asyncHandler(async(req, res) => {
   )
 });
 
+const updateAvatar = asyncHandler(async(req, res) =>{
+  const newAvatarLocalPath = req.file?.path;
+  if(!newAvatarLocalPath){
+    throw new apiError(400, "File path not found")
+  }
+  const user = await User.findById(req.user._id)
+  if(user.avatarPublicId){
+    try{
+      await cloudinary.uploader.destroy(user.public_id, {resource_type: Image})
+    }
+    catch(error){
+      throw new apiError(500, "something happened during update your avtar", error.message)
+    }
+    
+  }
+
+  const newAvatar = await uploadImageToCloudinary(newAvatarLocalPath)
+  const updateUser = await User.findByIdAndUpdate(
+    req.user._id, 
+    {
+      $set:{
+        avatar: newAvatar.secure_url,
+        avatarPublicId: newAvatar.public_id
+
+      }
+    }
+  )
+
+  return res.status(200).json(new apiResponse(200, updateUser, "Avtar updated sucessfully"))
+
+
+
+})
+
 module.exports = {
   registerUser,
   loggedInUser,
   logOutUser,
   refreshAccessToken,
-  changePassword
+  changePassword,
+  updateAvatar 
 };
