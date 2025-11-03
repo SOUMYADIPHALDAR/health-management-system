@@ -5,13 +5,12 @@ const StepsSchema = new Schema({
         type: Number,
         require: true,
         min: 0,
-
     },
     Date:{
-         type: Number,
-         default: Date.now
+        type: Number,
+        default: Date.now
     },
-     Distance:{
+    Distance:{
         type: Number,
         default: 0
 
@@ -20,7 +19,6 @@ const StepsSchema = new Schema({
         type: Number,
         default: 10000
     },
-
     User:{
         type: Schema.Types.ObjectId,
         ref: "User"
