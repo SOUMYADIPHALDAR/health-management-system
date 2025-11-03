@@ -1,24 +1,27 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 const waterIntakeSchema = new Schema({
-    User:{
+    user:{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
     },
     intake:{
         type: Number,
-        require: true,
-        default: 0
+        required: true,
+        default: 0,
+        min: 0
     },
-    Date:{
+    date:{
         type: Number,
         default: Date.now
     },
-    Goal:{
+    goal:{
         type: Number,
-        default: 5
+        default: 5,
+        min: 0
     },
-    Completed:{
+    completed:{
         type: Boolean,
         default: false
     }
