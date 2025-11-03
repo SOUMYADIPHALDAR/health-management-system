@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const sleepSchema = new Schema({
-    User:{
+    user:{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
     },
-    Duration:{
+    duration:{
         type: Number,
         required: true,
         default: 0
@@ -19,19 +20,19 @@ const sleepSchema = new Schema({
         type: Date,
         
     },
-    sleppQuality:{
+    sleepQuality:{
         type: Number,
         enum:[1, 2, 3, 4, 5]
     },
-    Date:{
+    date:{
         type: Date,
         default: Date.now
     },
-    Goal:{
+    goal:{
         type: Number,
         default: 8
     },
-    Completed:{
+    completed:{
         type: Boolean,
         default: false
     }
