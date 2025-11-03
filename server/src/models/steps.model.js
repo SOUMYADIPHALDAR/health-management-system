@@ -5,6 +5,7 @@ const StepsSchema = new Schema({
         type: Number,
         require: true,
         min: 0,
+
     },
     Date:{
         type: Number,
