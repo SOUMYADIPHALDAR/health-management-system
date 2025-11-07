@@ -1,26 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const StepsSchema = new Schema({
-    Steps:{
+    steps:{
         type: Number,
         require: true,
         min: 0,
 
     },
-    Date:{
+    date:{
         type: Number,
         default: Date.now
     },
-    Distance:{
+    distance:{
         type: Number,
         default: 0
 
     },
-    Goal:{
+    goal:{
         type: Number,
         default: 10000
     },
-    User:{
+    user:{
         type: Schema.Types.ObjectId,
         ref: "User"
     }
