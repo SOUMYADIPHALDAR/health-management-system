@@ -144,6 +144,6 @@ module.exports = {
     addSleep,
     getSleepRecords,
     updateSleepRecords,
-    deleteAllSleepRecords,
+    deleteOneSleepRecord,
     deleteAllSleepRecords
 }
