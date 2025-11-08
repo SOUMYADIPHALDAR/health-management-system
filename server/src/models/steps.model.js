@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 const StepsSchema = new Schema({
     steps:{
         type: Number,
-        require: true,
+        required: true,
         min: 0,
-
     },
     date:{
-        type: Number,
-        default: Date.now
+        type: Date,
+        default: Date.now,
+        required: true
     },
     distance:{
         type: Number,
@@ -22,10 +22,9 @@ const StepsSchema = new Schema({
     },
     user:{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
     }
-
-
 
 }, {timestamps: true} );
 const Step = mongoose.model("Step", StepsSchema);
