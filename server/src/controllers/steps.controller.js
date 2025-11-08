@@ -1,6 +1,6 @@
 const asyncHandler = require("../utils/asyncHandler.js");
 const apiError = require("../utils/apiError.js");
-const apiResponse = require("../utils/apiError.js");
+const apiResponse = require("../utils/apiResponse.js");
 const Step = require("../models/steps.model.js");
 
 const addStep = asyncHandler(async (req, res) => {
@@ -11,7 +11,7 @@ const addStep = asyncHandler(async (req, res) => {
 
   const step = await Step.create({
     steps,
-    date: Date ? new Date(Date) : new Date(),
+    date: date ? new Date(date) : new Date(),
     distance,
     goal,
     user: req.user._id,
@@ -21,8 +21,8 @@ const addStep = asyncHandler(async (req, res) => {
   }
 
   return res
-    .status(200)
-    .json(new apiResponse(200, step, "Steps added sucessfully"));
+    .status(201)
+    .json(new apiResponse(200, step, "Steps added successfully"));
 });
 
 module.exports = {

@@ -5,20 +5,33 @@ const Sleep = require("../models/sleep.model.js");
 const User = require("../models/user.model.js");
 
 const addSleep = asyncHandler(async(req, res) => {
-    const { sleepTime, wakeTime, sleepQuality, goal } = req.body;
-    if (!sleepTime || !wakeTime || !sleepQuality || !goal) {
+    const { sleepTime, wakeupTime, sleepQuality, goal } = req.body;
+    if (!sleepTime || !wakeupTime || !sleepQuality || !goal) {
         throw new apiError(400, "All fields are required..");
+    }
+
+    //validate sleep quality
+    if (sleepQuality < 1 || sleepQuality > 5) {
+        throw new apiError(400, "Sleep quality must be in between 1 to 5..");
+    }
+
+    //validate dates
+    const sleepDate = new Date(sleepTime);
+    const wakeDate = new Date(wakeupTime);
+
+    if (sleepDate >= wakeDate) {
+        throw new apiError(400, "Sleep time must be before wake up time..");
     }
 
     const sleep = await Sleep.create({
         user: req.user._id,
         sleepTime,
         sleepQuality,
-        wakeTime,
+        wakeupTime,
         goal: goal || 8
     })
     if (!sleep) {
-        throw new apiError(400, "something happened during adding sleep details..");
+        throw new apiError(400, "Failed to create sleep records..");
     }
 
     return res.status(201).json(
@@ -26,6 +39,78 @@ const addSleep = asyncHandler(async(req, res) => {
     )
 });
 
+const getSleepRecords = asyncHandler(async(req, res) => {
+    const { page = 1, limit = 30 } = req.query;
+
+    const sleep = await Sleep.find({user: req.user._id})
+    .sort({date: -1})
+    .limit(limit * 1)
+    .skip((page - 1) * limit);
+
+    const count = await Sleep.countDocuments({user: req.user._id});
+
+    if (!sleep || sleep.length === 0) {
+        throw new apiError(404, "No sleep records found..");
+    }
+
+    return res.status(200).json(
+        new apiResponse(200,{
+            sleep,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page
+        }, "Fetched all sleep records successfully..")
+    )
+});
+
+const updateSleepRecords = asyncHandler(async(req, res) => {
+    const { sleepId, newSleepTime, newWakeupTime, newSleepQuality, newGoal } = req.body;
+    
+    if (!sleepId) {
+        throw new apiError(400, "Sleep id is required..");
+    }
+
+    const sleep = await Sleep.findOne({
+        _id: sleepId,
+        user: req.user._id
+    });
+
+    if (!sleep) {
+        throw new apiError(404, "Sleep record not found..");
+    }
+
+    if (newSleepTime && newWakeupTime) {
+        const newSleepDate = new Date(newSleepTime);
+        const newWakeDate = new Date(newWakeupTime);
+        if (newSleepDate >= newWakeDate) {
+            throw new apiError(400, "Sleep time must be before wakeup time..")
+        }
+    }
+
+    if (newSleepQuality && (newSleepQuality < 1 || newSleepQuality > 5)) {
+        throw new apiError(400, "Sleep quality must be in between 1 to 5..");
+    }
+
+    const updateFields = {};
+    if(newSleepTime) updateFields.sleepTime = newSleepTime;
+    if (newWakeupTime) updateFields.wakeupTime = newWakeupTime;
+    if(newSleepQuality) updateFields.sleepQuality = newSleepQuality;
+    if(newGoal) updateFields.goal = newGoal;
+
+    const updatedSleep = await Sleep.findByIdAndUpdate(
+        sleepId,
+        {
+            $set: updateFields
+        },
+        { new: true }
+    )
+
+    return res.status(200).json(
+        apiResponse(200, updatedSleep, "Sleep records updated successfully..")
+    )
+});
+
 module.exports = {
     addSleep,
+    getSleepRecords,
+    updateSleepRecords
 }
