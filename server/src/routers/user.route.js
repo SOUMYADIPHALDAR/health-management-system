@@ -10,7 +10,6 @@ const {
   changePassword,
   updateAvatar,
 } = require("../controllers/user.controller.js");
-const upload = require("../middlewares/multer.middleware.js");
 
 router.post("/register", upload.single("avatar"), registerUser);
 router.post("/login", loggedInUser);

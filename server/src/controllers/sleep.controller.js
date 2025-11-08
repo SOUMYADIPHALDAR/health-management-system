@@ -43,7 +43,7 @@ const getSleepRecords = asyncHandler(async(req, res) => {
     const { page = 1, limit = 30 } = req.query;
 
     const sleep = await Sleep.find({user: req.user._id})
-    .sort({date: -1})
+    .sort({sleepTime: -1})
     .limit(limit * 1)
     .skip((page - 1) * limit);
 
@@ -105,7 +105,7 @@ const updateSleepRecords = asyncHandler(async(req, res) => {
     )
 
     return res.status(200).json(
-        apiResponse(200, updatedSleep, "Sleep records updated successfully..")
+        new apiResponse(200, updatedSleep, "Sleep records updated successfully..")
     )
 });
 
@@ -132,7 +132,7 @@ const deleteAllSleepRecords = asyncHandler(async(req, res) => {
         throw new apiError(404, "Sleep records not found..");
     }
 
-    await Sleep.deleteMany(sleep._id);
+    await Sleep.deleteMany({user: req.user._id});
 
     return res.status(200).json(
         new apiResponse(200, "", "All Sleep records deleted successfully..")
