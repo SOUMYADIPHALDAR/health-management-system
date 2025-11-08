@@ -109,8 +109,41 @@ const updateSleepRecords = asyncHandler(async(req, res) => {
     )
 });
 
+const deleteOneSleepRecord = asyncHandler(async(req, res) => {
+    const { sleepId } = req.params;
+    if (!sleepId) {
+        throw new apiError(400, "Sleep id is required..");
+    }
+
+    await Sleep.findOneAndDelete({
+        _id: sleepId,
+        user: req.user._id
+    });
+
+    return res.status(200).json(
+        new apiResponse(200, "", "One sleep record is deleted successfully..")
+    )
+});
+
+const deleteAllSleepRecords = asyncHandler(async(req, res) => {
+
+    const sleep = await Sleep.find({user: req.user._id});
+    if (!sleep || sleep.length === 0) {
+        throw new apiError(404, "Sleep records not found..");
+    }
+
+    await Sleep.deleteMany(sleep._id);
+
+    return res.status(200).json(
+        new apiResponse(200, "", "All Sleep records deleted successfully..")
+    )
+
+});
+
 module.exports = {
     addSleep,
     getSleepRecords,
-    updateSleepRecords
+    updateSleepRecords,
+    deleteAllSleepRecords,
+    deleteAllSleepRecords
 }
