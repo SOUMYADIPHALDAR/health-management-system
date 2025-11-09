@@ -7,6 +7,7 @@ const UserRouter = require("./src/routers/user.route.js");
 
 const app = express();
 const port = process.env.PORT || 5000;
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extendeda: true}));
 app.use(cors());

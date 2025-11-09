@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../middlewares/multer.middleware.js");
-const verifyToken = require("../middlewares/user.middleware.js");
+const verifyUser = require("../middlewares/user.middleware.js");
 const {
   registerUser,
   loggedInUser,
@@ -13,9 +13,9 @@ const {
 
 router.post("/register", upload.single("avatar"), registerUser);
 router.post("/login", loggedInUser);
-router.post("/logout", verifyToken, logOutUser);
+router.post("/logout", verifyUser, logOutUser);
 router.post("/refresh-access-token", refreshAccessToken);
-router.post("/change-password", verifyToken, changePassword);
-router.post("/update-avatar", verifyToken, upload.single("avatar"), updateAvatar);
+router.post("/change-password", verifyUser, changePassword);
+router.post("/update-avatar", verifyUser, upload.single("avatar"), updateAvatar);
 
 module.exports = router;
