@@ -154,9 +154,13 @@ const refreshAccessToken = asyncHandler(async(req, res) => {
 
 const changePassword = asyncHandler(async(req, res) => {
   const { currentPassword, newPassword, confirmPassword } = req.body;
-  const userId = req.user._id
+  const userId = req.user._id;
 
-  const user = await User.findById(userId);
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    throw new apiError(400, "All fields are required..");
+  }
+
+  const user = await User.findById(userId).select("+password");
   if (!user) {
     throw new apiError(404, "user not found..");
   }
@@ -166,16 +170,22 @@ const changePassword = asyncHandler(async(req, res) => {
     throw new apiError(400, "Wrong password..");
   }
 
+  // Check if new password is different from current password
+  const isSamePassword = await user.isPasswordCorrect(newPassword);
+  if (isSamePassword) {
+    throw new apiError(400, "New password must be different from current password..");
+  }
+
   if (newPassword !== confirmPassword) {
-    throw new apiError(400, "New and confirm password must be same..")
+    throw new apiError(400, "New and confirm password must be same..");
   }
 
   user.password = newPassword;
-  await user.save({validateBeforeSave: false});
+  await user.save({ validateBeforeSave: true });
 
   return res.status(200).json(
-    new apiResponse(200, "", "password changed successfully..")
-  )
+    new apiResponse(200, "", "Password changed successfully..")
+  );
 });
 
 const updateAvatar = asyncHandler(async(req, res) => {
