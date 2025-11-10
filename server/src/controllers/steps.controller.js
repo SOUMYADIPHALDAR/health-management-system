@@ -25,7 +25,7 @@ const addStepRecords = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, step, "Steps added successfully"));
 });
 
-const getStepsRecords = asyncHandler(async(req, res) => {
+const getAllStepsRecords = asyncHandler(async(req, res) => {
   const page = presentIn(req.query.page) || 1;
   const limit = presentIn(req.query.page) || 30;
 
@@ -52,7 +52,7 @@ const getStepsRecords = asyncHandler(async(req, res) => {
   )
 });
 
-const getSleepRecord = asyncHandler(async(req, res) => {
+const getStepRecord = asyncHandler(async(req, res) => {
   const { stepId } = req.params;
   if (!stepId) {
     throw new apiError(400, "Sleep id is required..");
@@ -135,8 +135,8 @@ const deleteAllStepRecords = asyncHandler(async(req, res) => {
 
 module.exports = {
   addStepRecords,
-  getStepsRecords,
-  getSleepRecord,
+  getAllStepsRecords,
+  getStepRecord,
   updateStepRecord,
   deleteStepRecord,
   deleteAllStepRecords
