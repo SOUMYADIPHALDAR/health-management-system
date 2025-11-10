@@ -15,7 +15,7 @@ router.post("/register", upload.single("avatar"), registerUser);
 router.post("/login", loggedInUser);
 router.post("/logout", verifyUser, logOutUser);
 router.post("/refresh-access-token", refreshAccessToken);
-router.post("/change-password", verifyUser, changePassword);
-router.post("/update-avatar", verifyUser, upload.single("avatar"), updateAvatar);
+router.put("/change-password", verifyUser, changePassword);
+router.put("/update-avatar", verifyUser, upload.single("avatar"), updateAvatar);
 
 module.exports = router;

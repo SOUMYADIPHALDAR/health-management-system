@@ -39,8 +39,29 @@ const addSleep = asyncHandler(async(req, res) => {
     )
 });
 
-const getSleepRecords = asyncHandler(async(req, res) => {
-    const { page = 1, limit = 30 } = req.query;
+const getSleepRecord = asyncHandler(async(req, res) => {
+    const { sleepId } = req.params;
+
+    if (!sleepId) {
+        throw new apiError(400, "Sleep id is required..");
+    }
+
+    const sleep = await Sleep.findOne({
+        _id: sleepId,
+        user: req.user._id
+    });
+    if (!sleep) {
+        throw new apiError(404, "No sleep record found..");
+    }
+
+    return res.status(200).json(
+        new apiResponse(200, sleep, "Sleep record fetched successfully..")
+    )
+});
+
+const getAllSleepRecords = asyncHandler(async(req, res) => {
+    const page = presentIn(req.query.page) || 1;
+    const limit = presentIn(req.query.limit) || 30;
 
     const sleep = await Sleep.find({user: req.user._id})
     .sort({sleepTime: -1})
@@ -142,8 +163,9 @@ const deleteAllSleepRecords = asyncHandler(async(req, res) => {
 
 module.exports = {
     addSleep,
-    getSleepRecords,
+    getSleepRecord,
+    getAllSleepRecords,
     updateSleepRecords,
     deleteOneSleepRecord,
     deleteAllSleepRecords
-}
+};

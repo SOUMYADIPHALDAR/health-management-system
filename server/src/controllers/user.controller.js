@@ -155,16 +155,16 @@ const refreshAccessToken = asyncHandler(async(req, res) => {
 const changePassword = asyncHandler(async(req, res) => {
   const { currentPassword, newPassword, confirmPassword } = req.body;
   const userId = req.user._id;
-
+ 
   if (!currentPassword || !newPassword || !confirmPassword) {
     throw new apiError(400, "All fields are required..");
   }
-
+  
   const user = await User.findById(userId).select("+password");
   if (!user) {
     throw new apiError(404, "user not found..");
   }
-
+  
   const correctPassword = await user.isPasswordCorrect(currentPassword);
   if (!correctPassword) {
     throw new apiError(400, "Wrong password..");
