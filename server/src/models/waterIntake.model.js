@@ -13,7 +13,7 @@ const waterIntakeSchema = new Schema({
         min: 0
     },
     date:{
-        type: Number,
+        type: Date,
         default: Date.now
     },
     goal:{
@@ -28,5 +28,5 @@ const waterIntakeSchema = new Schema({
 
 
 }, {timestamps: true})
-const waterIntake = mongoose.model("waterIntake", waterIntakeSchema);
-module.exports = waterIntake;
+const WaterIntake = mongoose.model("WaterIntake", waterIntakeSchema);
+module.exports = WaterIntake;

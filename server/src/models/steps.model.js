@@ -27,5 +27,8 @@ const StepsSchema = new Schema({
     }
 
 }, {timestamps: true} );
+
+StepsSchema.index({ user: 1, date: 1 });
+
 const Step = mongoose.model("Step", StepsSchema);
 module.exports = Step;
