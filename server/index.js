@@ -6,6 +6,7 @@ const connectDB = require("./src/config/db.js");
 const UserRouter = require("./src/routers/user.route.js");
 const StepRouter = require("./src/routers/steps.route.js");
 const SleepRouter = require("./src/routers/sleep.route.js");
+const WaterIntakeRoute = require("./src/routers/waterIntake.route.js");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/", UserRouter);
 app.use("/", StepRouter);
 app.use("/", SleepRouter);
+app.use("/", WaterIntakeRoute);
 
 connectDB()
 .then(() => {
