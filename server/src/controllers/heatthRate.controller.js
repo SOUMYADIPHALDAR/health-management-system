@@ -91,9 +91,40 @@ const updateHeartRateRecord = asyncHandler(async(req, res) => {
     )
 });
 
+const deleteHeartRateRecord = asyncHandler(async(req, res) => {
+    const { heartRateId } = req.params;
+    if (!heartRateId) {
+        throw new apiError(400, "Heart rate id is required..");
+    }
+
+    await HeartRate.findOneAndDelete({
+        _id: heartRateId,
+        user: req.user._id
+    });
+
+    return res.status(200).json(
+        new apiResponse(200, "", "Heart rate record deleted successfully..")
+    )
+});
+
+const deleteAllHeartRateRecords = asyncHandler(async(req, res) => {
+    const records = await HeartRate.find({user: req.user._id});
+    if (!records) {
+        throw new apiError(404, "No heart rate record found..")
+    }
+
+    await HeartRate.deleteMany({user: req.user._id});
+
+    return res.status(200).json(
+        new apiResponse(200, "", "All heart rate records deleted successfully..")
+    )
+});
+
 module.exports = {
     addHeartRateRecords,
     getHeartRateRecord,
     getAllHeartRateRecords,
-    updateHeartRateRecord
-}
+    updateHeartRateRecord,
+    deleteHeartRateRecord,
+    deleteAllHeartRateRecords
+};
