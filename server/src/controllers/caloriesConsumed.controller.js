@@ -74,8 +74,76 @@ const getAllCalorieConsumedRecords = asyncHandler(async(req, res) => {
     )
 });
 
+const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
+    const { newCalorieType, newCaloriesConsumed, newGoal, caloriesConsumedId } = req.body;
+
+    if (!caloriesConsumedId) {
+        throw new apiError(400, "Calorie consumed id is required..");
+    }
+
+    const record = await CaloriesConsumed.findOne({
+        _id: caloriesConsumedId,
+        user: req.user._id
+    });
+
+    if (!record) {
+        throw new apiError(404, "No calorie consumed record found..");
+    }
+
+    const updatedFields = {}
+    if(newCalorieType) updatedFields.calorieType = newCalorieType;
+    if(newCaloriesConsumed) updatedFields.CaloriesConsumed = newCaloriesConsumed;
+    if(newGoal) updatedFields.goal = newGoal;
+
+    const updatedRecord = await CaloriesConsumed.findByIdAndUpdate(
+        req.user._id,
+        {
+            $set: updatedFields
+        },
+        { new: true }
+    );
+
+    return res.status(200).json(
+        new apiResponse(200, updatedRecord, "Calorie consumed record updated successfully..")
+    )
+});
+
+const deleteCalorieConsumedRecord = asyncHandler(async(req, res) => {
+    const { caloriesConsumedId } = req.params;
+
+    if (!caloriesConsumedId) {
+        throw new apiError(400, "Calorie consumed id is required..");
+    }
+
+    await CaloriesConsumed.findOneAndDelete({
+        _id: caloriesConsumedId,
+        user: req.user._id
+    });
+
+    return res.status(200).json(
+        new apiResponse(200, "", "Calorie consumed record deleted successfully..")
+    )
+});
+
+const deleteAllCalorieConsumedRecord = asyncHandler(async(req, res) => {
+    const records = await CaloriesConsumed.find({user: req.user._id});
+
+    if (!records) {
+        throw new apiError(404, "Calorie consumed records not found..")
+    }
+
+    await CaloriesConsumed.deleteMany({user: req.user._id});
+
+    return res.status(200).json(
+        new apiResponse(200, "", "All calorie consumed records are deleted successfully..")
+    )
+});
+
 module.exports = {
     addCaloriesConsumedRecord,
     getCalorieConsumedRecord,
-    getAllCalorieConsumedRecords
+    getAllCalorieConsumedRecords,
+    updateCalorieConsumedRecord,
+    deleteCalorieConsumedRecord,
+    deleteAllCalorieConsumedRecord
 };
