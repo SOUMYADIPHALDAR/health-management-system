@@ -75,7 +75,8 @@ const getAllCalorieConsumedRecords = asyncHandler(async(req, res) => {
 });
 
 const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
-    const { newCalorieType, newCaloriesConsumed, newGoal, caloriesConsumedId } = req.body;
+    const { newCalorieType, newCaloriesConsumed, newGoal } = req.body;
+    const { caloriesConsumedId } = req.params;
 
     if (!caloriesConsumedId) {
         throw new apiError(400, "Calorie consumed id is required..");
@@ -96,7 +97,7 @@ const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
     if(newGoal) updatedFields.goal = newGoal;
 
     const updatedRecord = await CaloriesConsumed.findByIdAndUpdate(
-        req.user._id,
+        caloriesConsumedId,
         {
             $set: updatedFields
         },
@@ -128,7 +129,7 @@ const deleteCalorieConsumedRecord = asyncHandler(async(req, res) => {
 const deleteAllCalorieConsumedRecord = asyncHandler(async(req, res) => {
     const records = await CaloriesConsumed.find({user: req.user._id});
 
-    if (!records) {
+    if (!records || records.length === 0) {
         throw new apiError(404, "Calorie consumed records not found..")
     }
 

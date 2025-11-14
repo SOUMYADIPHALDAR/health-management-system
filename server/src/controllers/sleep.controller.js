@@ -84,7 +84,8 @@ const getAllSleepRecords = asyncHandler(async(req, res) => {
 });
 
 const updateSleepRecords = asyncHandler(async(req, res) => {
-    const { sleepId, newSleepTime, newWakeupTime, newSleepQuality, newGoal } = req.body;
+    const { newSleepTime, newWakeupTime, newSleepQuality, newGoal } = req.body;
+    const { sleepId } = req.params;
     
     if (!sleepId) {
         throw new apiError(400, "Sleep id is required..");
@@ -149,6 +150,7 @@ const deleteOneSleepRecord = asyncHandler(async(req, res) => {
 const deleteAllSleepRecords = asyncHandler(async(req, res) => {
 
     const sleep = await Sleep.find({user: req.user._id});
+    
     if (!sleep || sleep.length === 0) {
         throw new apiError(404, "Sleep records not found..");
     }

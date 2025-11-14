@@ -72,7 +72,8 @@ const getStepRecord = asyncHandler(async(req, res) => {
 });
 
 const updateStepRecord = asyncHandler(async(req, res) => {
-  const { newSteps, newDate, newDistance, newGoal, stepId } = req.body;
+  const { newSteps, newDate, newDistance, newGoal } = req.body;
+  const { stepId } = req.params;
   
   if(!stepId){
     throw new apiError(400, "Step id is required..");
