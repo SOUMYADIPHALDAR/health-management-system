@@ -53,7 +53,7 @@ const getAllHeartRateRecords = asyncHandler(async(req, res) => {
     .limit(limit * 1)
     .skip((page - 1) * limit)
 
-    if (!records) {
+    if (!records || records.length === 0) {
         throw new apiError(400, "No records found..")
     }
 
@@ -63,7 +63,9 @@ const getAllHeartRateRecords = asyncHandler(async(req, res) => {
 });
 
 const updateHeartRateRecord = asyncHandler(async(req, res) => {
-    const { heartRate, heartRateId } = req.body;
+    const { heartRate } = req.body;
+    const { heartRateId } = req.params;
+
     if (!heartRateId) {
         throw new apiError(400, "Heart rate id is required..");
     }
@@ -81,7 +83,7 @@ const updateHeartRateRecord = asyncHandler(async(req, res) => {
     if(heartRate) updatedFields.heartRate = heartRate;
 
     const updatedRecord = await HeartRate.findByIdAndUpdate(
-        req.user._id,
+        heartRateId,
         { $set: updatedFields },
         { new: true }
     );
@@ -109,7 +111,7 @@ const deleteHeartRateRecord = asyncHandler(async(req, res) => {
 
 const deleteAllHeartRateRecords = asyncHandler(async(req, res) => {
     const records = await HeartRate.find({user: req.user._id});
-    if (!records) {
+    if (!records || records.length === 0) {
         throw new apiError(404, "No heart rate record found..")
     }
 
