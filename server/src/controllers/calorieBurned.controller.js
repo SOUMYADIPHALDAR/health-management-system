@@ -148,4 +148,4 @@ module.exports = {
     updateCalorieBurnedRecords,
     deleteCalorieBurnedRecord,
     deleteAllCalorieBurnedRecord
-}
+};
