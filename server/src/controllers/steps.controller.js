@@ -9,11 +9,14 @@ const addStepRecords = asyncHandler(async (req, res) => {
     throw new apiError(400, "Steps value must be more than zero");
   }
 
+  const completed = steps >= (goal || 10000);
+
   const step = await Step.create({
     steps,
     date: date ? new Date(date) : new Date(),
     distance: distance ?? 0,
     goal: goal ?? 10000,
+    completed,
     user: req.user._id,
   });
   if (!step) {
@@ -26,8 +29,8 @@ const addStepRecords = asyncHandler(async (req, res) => {
 });
 
 const getAllStepsRecords = asyncHandler(async(req, res) => {
-  const page = presentIn(req.query.page) || 1;
-  const limit = presentIn(req.query.page) || 30;
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.page) || 30;
 
   const steps = await Step.find({user: req.user._id})
   .limit(limit*1)
@@ -92,6 +95,11 @@ const updateStepRecord = asyncHandler(async(req, res) => {
   if(newDate) updatedFields.date = newDate;
   if(newDistance) updatedFields.distance = newDistance;
   if(newGoal) updatedFields.goal = newGoal;
+  if(newSteps >= newGoal) {
+    updatedFields.completed = true
+  } else {
+    updatedFields.completed = false
+  };
 
   const updatedStep = await Step.findByIdAndUpdate(
     stepId,

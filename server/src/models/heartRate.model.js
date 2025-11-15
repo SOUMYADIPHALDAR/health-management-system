@@ -23,7 +23,7 @@ const heartRateSchema = new Schema(
       default: Date.now,
     },
   },
-  { timstamps: true }
+  { timestamps: true }
 );
 
 heartRateSchema.pre("save", function(next) {
