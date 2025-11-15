@@ -12,9 +12,9 @@ const verifyUser = require("../middlewares/user.middleware.js");
 
 router.post("/waterIntake", verifyUser, addWaterIntakeRecord);
 router.get("/waterIntake", verifyUser, getAllWaterIntakeRecord);
-router.get("/one-waterIntake", verifyUser, getWaterIntakeRecord);
-router.put("/update-waterIntake", verifyUser, updateWaterIntakeRecord);
-router.delete("/delete-waterIntake", verifyUser, deleteWaterIntakeRecord);
-router.delete("delete-all-waterIntake", verifyUser, deleteAllWaterIntakeRecords);
+router.get("/waterIntake/:intakeId", verifyUser, getWaterIntakeRecord);
+router.put("/waterIntake/:waterIntakeId", verifyUser, updateWaterIntakeRecord);
+router.delete("/waterIntake/:waterIntakeId", verifyUser, deleteWaterIntakeRecord);
+router.delete("/waterIntake", verifyUser, deleteAllWaterIntakeRecords);
 
 module.exports = router;

@@ -23,13 +23,23 @@ const addSleep = asyncHandler(async(req, res) => {
         throw new apiError(400, "Sleep time must be before wake up time..");
     }
 
+    const finalGoal = goal || 8;
+
+    // Calculate duration
+    const diff = wakeDate - sleepDate; // ms
+    const duration = Number((diff / (1000 * 60 * 60)).toFixed(1)); // hours
+
+    const completed = duration >= (goal || 8)
+
     const sleep = await Sleep.create({
         user: req.user._id,
         sleepTime,
         sleepQuality,
         wakeupTime,
-        goal: goal || 8
-    })
+        goal: finalGoal,
+        completed
+    });
+
     if (!sleep) {
         throw new apiError(400, "Failed to create sleep records..");
     }
@@ -60,8 +70,8 @@ const getSleepRecord = asyncHandler(async(req, res) => {
 });
 
 const getAllSleepRecords = asyncHandler(async(req, res) => {
-    const page = presentIn(req.query.page) || 1;
-    const limit = presentIn(req.query.limit) || 30;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 30;
 
     const sleep = await Sleep.find({user: req.user._id})
     .sort({sleepTime: -1})
@@ -117,6 +127,11 @@ const updateSleepRecords = asyncHandler(async(req, res) => {
     if (newWakeupTime) updateFields.wakeupTime = newWakeupTime;
     if(newSleepQuality) updateFields.sleepQuality = newSleepQuality;
     if(newGoal) updateFields.goal = newGoal;
+    if (newSleepTime >= newGoal) {
+        updateFields.completed = true
+    } else {
+        updateFields.completed = false
+    }
 
     const updatedSleep = await Sleep.findByIdAndUpdate(
         sleepId,

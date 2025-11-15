@@ -4,19 +4,19 @@ const apiResponse = require("../utils/apiResponse.js");
 const HeartRate = require("../models/heartRate.model.js");
 
 const addHeartRateRecords = asyncHandler(async(req, res) => {
-    const { heartRate, date } = req.body;
+    const { heartRate } = req.body;
 
     if (!heartRate || heartRate < 30 || heartRate > 220) {
         throw new apiError(400, "Invalid heart rate..");
     }
 
     let status = "normal";
-    if(heartRate < 60) status = "low";
-    elseif (heartRate > 100) = "high";
+    if(heartRate < 60) status = "low"
+    else if (heartRate > 100) status= "high";
 
     const record = await HeartRate.create({
         heartRate,
-        date: date ? new Date(date) : new Date(),
+        date: Date.now(),
         user: req.user._id
     });
 
@@ -46,8 +46,8 @@ const getHeartRateRecord = asyncHandler(async(req, res) => {
 });
 
 const getAllHeartRateRecords = asyncHandler(async(req, res) => {
-    const page = presentIn(req.query.page) || 1;
-    const limit = presentIn(req.query.limit) || 30;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 30;
 
     const records = await HeartRate.find({user: req.user._id})
     .limit(limit * 1)
@@ -81,6 +81,8 @@ const updateHeartRateRecord = asyncHandler(async(req, res) => {
 
     const updatedFields = {}
     if(heartRate) updatedFields.heartRate = heartRate;
+    if(heartRate < 60) updatedFields.status = "low"
+    else if (heartRate > 100) updatedFields.status= "high"
 
     const updatedRecord = await HeartRate.findByIdAndUpdate(
         heartRateId,

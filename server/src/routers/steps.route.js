@@ -11,10 +11,10 @@ const {
 const verifyUser = require("../middlewares/user.middleware.js");
 
 router.post("/steps", verifyUser, addStepRecords);
-router.get("/all-steps", verifyUser, getAllStepsRecords);
-router.get("/steps", verifyUser, getStepRecord);
-router.patch("/update-stepRecord", verifyUser, updateStepRecord);
-router.delete("/delete-stepRecord", verifyUser, deleteStepRecord);
-router.delete("/delete-all-stepRecords", verifyUser, deleteAllStepRecords);
+router.get("/steps", verifyUser, getAllStepsRecords);
+router.get("/steps/:stepId", verifyUser, getStepRecord);
+router.put("/steps/:stepId", verifyUser, updateStepRecord);
+router.delete("/steps/:stepId", verifyUser, deleteStepRecord);
+router.delete("/steps", verifyUser, deleteAllStepRecords);
 
 module.exports = router;

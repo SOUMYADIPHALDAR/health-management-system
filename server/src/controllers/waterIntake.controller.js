@@ -29,8 +29,8 @@ const addWaterIntakeRecord = asyncHandler(async(req, res) => {
 });
 
 const getWaterIntakeRecord = asyncHandler(async(req, res) => {
-    const { intakeId } = req.params;
-
+    const {intakeId}  = req.params;
+    
     if (!intakeId) {
         throw new apiError(400, "Intake id is required..");
     }
@@ -49,8 +49,8 @@ const getWaterIntakeRecord = asyncHandler(async(req, res) => {
 });
 
 const getAllWaterIntakeRecord = asyncHandler(async(req, res) => {
-    const page = presentIn(req.query.page) || 1;
-    const limit = presentIn(req.query.limit) || 30;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 30;
 
     const waterIntake = await WaterIntake.find({user: req.user._id})
     .limit(limit * 1)
@@ -91,6 +91,11 @@ const updateWaterIntakeRecord = asyncHandler(async(req, res) => {
     const updatedFields = {}
     if(intake) updatedFields.intake = intake;
     if(goal) updatedFields.goal = goal;
+    if(intake >= goal) {
+        updatedFields.completed = true
+    } else {
+        updatedFields.completed = false
+    }
 
     const updatedWaterIntakeRecord = await WaterIntake.findByIdAndUpdate(
         waterIntake._id,
