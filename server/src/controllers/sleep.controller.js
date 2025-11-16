@@ -36,6 +36,7 @@ const addSleep = asyncHandler(async(req, res) => {
         sleepTime,
         sleepQuality,
         wakeupTime,
+        duration,
         goal: finalGoal,
         completed
     });
