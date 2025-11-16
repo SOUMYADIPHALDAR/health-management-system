@@ -8,7 +8,7 @@ const CaloriesConsumedSchema = new Schema({
     },
     calorieType:{
         type: String,
-        enum: ["Protien", "fat", "carbs", "fibere"],
+        enum: ["protein", "fat", "carbs", "fibere"],
         required: true
     },
     caloriesConsumed:{
@@ -22,7 +22,7 @@ const CaloriesConsumedSchema = new Schema({
     },
     date:{
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     completed: {
         type: Boolean,

@@ -16,13 +16,13 @@ const addCaloriesConsumedRecord = asyncHandler(async(req, res) => {
         calorieType,
         caloriesConsumed,
         goal: goal || 2000,
-        date: date ? new Date(date) : new Date(),
+        date: date ? new Date(date) : Date.now(),
         user: req.user._id,
         completed
     });
 
     return res.status(201).json(
-        new apiError(201, record, "Calory consumed record added successfully..")
+        new apiResponse(201, record, "Calory consumed record added successfully..")
     )
 });
 
@@ -48,8 +48,8 @@ const getCalorieConsumedRecord = asyncHandler(async(req, res) => {
 });
 
 const getAllCalorieConsumedRecords = asyncHandler(async(req, res) => {
-    const page = presentIn(req.query.page) || 1;
-    const limit = presentIn(req.query.limit) || 30;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 30;
 
     const records = await CaloriesConsumed.find({user: req.user._id})
     .limit(limit * 1)
@@ -75,7 +75,7 @@ const getAllCalorieConsumedRecords = asyncHandler(async(req, res) => {
 });
 
 const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
-    const { newCalorieType, newCaloriesConsumed, newGoal } = req.body;
+    const { calorieType, caloriesConsumed, goal } = req.body;
     const { caloriesConsumedId } = req.params;
 
     if (!caloriesConsumedId) {
@@ -90,11 +90,11 @@ const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
     if (!record) {
         throw new apiError(404, "No calorie consumed record found..");
     }
-
+    
     const updatedFields = {}
-    if(newCalorieType) updatedFields.calorieType = newCalorieType;
-    if(newCaloriesConsumed) updatedFields.CaloriesConsumed = newCaloriesConsumed;
-    if(newGoal) updatedFields.goal = newGoal;
+    if(calorieType) updatedFields.calorieType = calorieType;
+    if(caloriesConsumed) updatedFields.caloriesConsumed = caloriesConsumed;
+    if(goal) updatedFields.goal = goal;
 
     const updatedRecord = await CaloriesConsumed.findByIdAndUpdate(
         caloriesConsumedId,

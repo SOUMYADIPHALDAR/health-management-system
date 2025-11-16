@@ -6,17 +6,18 @@ const CaloriesBurned = require("../models/CaloriesBurned.model.js");
 const addCalorieBurnedRecords = asyncHandler(async(req, res) => {
     const { activity, activityDuration, caloriesBurned, date, goal } = req.body;
 
-    if (!activity || !activityDuration || !caloriesBurned || !date || !goal) {
+    if (!activity || !activityDuration || !caloriesBurned || !goal) {
         throw new apiError(400, "All fields are required..")
     }
 
-    const complete = caloriesBurned >= (goal || 2000)
+    const complete = caloriesBurned >= (goal || 500)
 
     const record = await CaloriesBurned.create({
         activity,
         activityDuration,
+        caloriesBurned,
         completed: complete,
-        date: date ? new Date(date) : new Date(),
+        date: date ? new Date(date) : Date.now(),
         goal,
         user: req.user._id
     });
@@ -48,8 +49,8 @@ const getCalorieBurnedRecord = asyncHandler(async(req, res) => {
 });
 
 const getAllCalorieBurnedRecords =asyncHandler(async(req, res) => {
-    const page = presentIn(req.query.page || 1);
-    const limit = presentIn(req.query.limit || 30);
+    const page = Number(req.query.page || 1);
+    const limit = Number(req.query.limit || 30);
 
     const records = await CaloriesBurned.find({user: req.user._id})
     .limit(limit * 1)

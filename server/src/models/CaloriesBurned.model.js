@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const CaloriesBurnedSchema = new Schema({
     activity:{
         type: String,
-        require: true
+        required: true
     },
     activityDuration:{
         type: Number,
@@ -22,7 +22,7 @@ const CaloriesBurnedSchema = new Schema({
     },
     goal:{
         type: Number,
-        default: 2500 //kcal
+        default: 500 //kcal
     },
 
     user:{

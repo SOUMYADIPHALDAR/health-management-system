@@ -9,13 +9,12 @@ const {
     deleteAllCalorieConsumedRecord
 } = require("../controllers/caloriesConsumed.controller.js");
 const verifyUser = require("../middlewares/user.middleware.js");
-const { getHeartRateRecord } = require("../controllers/heatthRate.controller");
 
-router.post("/calorieConsumed-record", verifyUser, addCaloriesConsumedRecord);
-router.get("/calorieConsumed-record", verifyUser, getAllCalorieConsumedRecords);
-router.get("/one-calorieConsumed-record", verifyUser, getCalorieConsumedRecord);
-router.patch("/update-calorieConsumed-record", verifyUser, updateCalorieConsumedRecord);
-router.delete("/calorieConsumed-record", verifyUser, deleteAllCalorieConsumedRecord);
-router.delete("/one-calorieConsumed-record", verifyUser, deleteCalorieConsumedRecord);
+router.post("/calorieConsumed", verifyUser, addCaloriesConsumedRecord);
+router.get("/calorieConsumed", verifyUser, getAllCalorieConsumedRecords);
+router.get("/calorieConsumed/:caloriesConsumedId", verifyUser, getCalorieConsumedRecord);
+router.put("/calorieConsumed/:caloriesConsumedId", verifyUser, updateCalorieConsumedRecord);
+router.delete("/calorieConsumed", verifyUser, deleteAllCalorieConsumedRecord);
+router.delete("/calorieConsumed/:caloriesConsumedId", verifyUser, deleteCalorieConsumedRecord);
 
 module.exports = router;

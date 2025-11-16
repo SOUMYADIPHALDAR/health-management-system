@@ -9,11 +9,10 @@ const {
     deleteAllSleepRecords
 } = require("../controllers/sleep.controller.js");
 const verifyUser = require("../middlewares/user.middleware.js");
-const { mkcol } = require("./steps.route");
 
 router.post("/sleep", verifyUser, addSleep);
-router.get("/sleep", verifyUser, getSleepRecord);
-router.get("/sleep/:sleepId", verifyUser, getAllSleepRecords);
+router.get("/sleep/:sleepId", verifyUser, getSleepRecord);
+router.get("/sleep", verifyUser, getAllSleepRecords);
 router.patch("/sleep/:sleepId", verifyUser, updateSleepRecords);
 router.delete("/sleep/:sleepId", verifyUser, deleteOneSleepRecord);
 router.delete("/sleep", verifyUser, deleteAllSleepRecords);
