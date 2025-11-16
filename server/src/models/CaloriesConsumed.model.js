@@ -31,5 +31,13 @@ const CaloriesConsumedSchema = new Schema({
 
 }, {timestamps: true});
 
+CaloriesConsumedSchema.pre("save", async function (next) {
+    if (this.caloriesConsumed >= this.goal) {
+        this.completed = true
+    } else {
+        this.completed = false
+    }
+})
+
 const CaloriesConsumed = mongoose.model("CaloriesConsumed", CaloriesConsumedSchema);
 module.exports = CaloriesConsumed;

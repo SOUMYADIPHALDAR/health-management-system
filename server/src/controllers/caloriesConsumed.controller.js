@@ -95,6 +95,11 @@ const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
     if(calorieType) updatedFields.calorieType = calorieType;
     if(caloriesConsumed) updatedFields.caloriesConsumed = caloriesConsumed;
     if(goal) updatedFields.goal = goal;
+    if (caloriesConsumed >= goal) {
+        updatedFields.completed = true
+    } else {
+        updatedFields.completed = false
+    }
 
     const updatedRecord = await CaloriesConsumed.findByIdAndUpdate(
         caloriesConsumedId,
