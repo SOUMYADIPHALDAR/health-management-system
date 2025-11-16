@@ -10,15 +10,12 @@ const addCaloriesConsumedRecord = asyncHandler(async(req, res) => {
         throw new apiError(400, "All fields are required..")
     }
 
-    const completed = caloriesConsumed >= (goal || 2000);
-
     const record = await CaloriesConsumed.create({
         calorieType,
         caloriesConsumed,
         goal: goal || 2000,
         date: date ? new Date(date) : Date.now(),
         user: req.user._id,
-        completed
     });
 
     return res.status(201).json(
@@ -95,11 +92,6 @@ const updateCalorieConsumedRecord = asyncHandler(async(req, res) => {
     if(calorieType) updatedFields.calorieType = calorieType;
     if(caloriesConsumed) updatedFields.caloriesConsumed = caloriesConsumed;
     if(goal) updatedFields.goal = goal;
-    if (caloriesConsumed >= goal) {
-        updatedFields.completed = true
-    } else {
-        updatedFields.completed = false
-    }
 
     const updatedRecord = await CaloriesConsumed.findByIdAndUpdate(
         caloriesConsumedId,
