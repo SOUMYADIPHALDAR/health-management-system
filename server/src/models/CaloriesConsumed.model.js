@@ -37,6 +37,7 @@ CaloriesConsumedSchema.pre("save", async function (next) {
     } else {
         this.completed = false
     }
+    next()
 })
 
 const CaloriesConsumed = mongoose.model("CaloriesConsumed", CaloriesConsumedSchema);
