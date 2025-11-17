@@ -4,51 +4,52 @@ const apiResponse = require("../utils/apiResponse.js");
 const Sleep = require("../models/sleep.model.js");
 const User = require("../models/user.model.js");
 
-const addSleep = asyncHandler(async(req, res) => {
-    const { sleepTime, wakeupTime, sleepQuality, goal } = req.body;
-    if (!sleepTime || !wakeupTime || !sleepQuality || !goal) {
-        throw new apiError(400, "All fields are required..");
+const addSleep = asyncHandler(async (req, res) => {
+    const { sleepTime, wakeupTime, sleepQuality, goal = 8 } = req.body;
+
+    // Basic check
+    if (!sleepTime || !wakeupTime || !sleepQuality) {
+        throw new apiError(400, "Sleep time, wakeup time and sleep quality are required.");
     }
 
-    //validate sleep quality
-    if (sleepQuality < 1 || sleepQuality > 5) {
-        throw new apiError(400, "Sleep quality must be in between 1 to 5..");
-    }
-
-    //validate dates
+    // Convert to Date
     const sleepDate = new Date(sleepTime);
     const wakeDate = new Date(wakeupTime);
 
+    // Validate dates
+    if (isNaN(sleepDate) || isNaN(wakeDate)) {
+        throw new apiError(400, "Invalid time format.");
+    }
     if (sleepDate >= wakeDate) {
-        throw new apiError(400, "Sleep time must be before wake up time..");
+        throw new apiError(400, "Sleep time must be before wakeup time.");
     }
 
-    const finalGoal = goal || 8;
+    // Validate quality
+    if (sleepQuality < 1 || sleepQuality > 5) {
+        throw new apiError(400, "Sleep quality must be between 1 and 5.");
+    }
 
-    // Calculate duration
-    const diff = wakeDate - sleepDate; // ms
-    const duration = Number((diff / (1000 * 60 * 60)).toFixed(1)); // hours
+    // Calculate duration (hours)
+    const duration = Number(((wakeDate - sleepDate) / (1000 * 60 * 60)).toFixed(1));
 
-    const completed = duration >= (goal || 8)
+    // Check goal
+    const completed = duration >= goal;
 
     const sleep = await Sleep.create({
         user: req.user._id,
-        sleepTime,
+        sleepTime: sleepDate,
+        wakeupTime: wakeDate,
         sleepQuality,
-        wakeupTime,
         duration,
-        goal: finalGoal,
+        goal,
         completed
     });
 
-    if (!sleep) {
-        throw new apiError(400, "Failed to create sleep records..");
-    }
-
     return res.status(201).json(
-        new apiResponse(200, sleep, "sleep details added successfully..")
-    )
+        new apiResponse(200, sleep, "Sleep record added successfully")
+    );
 });
+
 
 const getSleepRecord = asyncHandler(async(req, res) => {
     const { sleepId } = req.params;
