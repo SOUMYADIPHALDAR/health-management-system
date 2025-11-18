@@ -38,3 +38,11 @@ function goBack() {
       window.location.href ="profile.html"
       return false; // Prevent actual form submission for demo
     }
+
+// === dashboard page ===
+function editGoal() {
+      const newGoal = prompt("Enter your new goal:");
+      if (newGoal) {
+        alert("Goal updated to: " + newGoal);
+      }
+    }
