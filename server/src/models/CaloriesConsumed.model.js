@@ -1,30 +1,40 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const CaloriesConsumedSchema = new Schema({
-    User:{
+    user:{
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    CalorieType:{
+    calorieType:{
         type: String,
-        enum: [Protien, fat, carbs, fibere],
-        require: true
+        enum: ["protein", "fat", "carbs", "fibere"],
+        required: true
     },
-    CaloriesConsumed:{
+    caloriesConsumed:{
         type: Number,
-        require: true,
-        min: 1500 // kcal
+        required: true,
+        min:0 // kcal
     },
-    Goal:{
+    goal:{
         type: Number,
         default: 2000 // kcal
     },
-    Date:{
-        type: Number,
-        default: Date.now
-
+    date:{
+        type: Date,
+        default: Date.now()
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
+
 }, {timestamps: true});
 
-const CaloriesConsumed = mongoose.model("CaloriesConsumed", "CaloriesConsumedSchema");
-const exports = CaloriesConsumed;
+CaloriesConsumedSchema.pre("save", async function (next) {
+    this.completed = this.caloriesConsumed >= this.goal;
+    next()
+});
+
+const CaloriesConsumed = mongoose.model("CaloriesConsumed", CaloriesConsumedSchema);
+module.exports = CaloriesConsumed;

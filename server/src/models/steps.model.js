@@ -1,33 +1,38 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const StepsSchema = new Schema({
-    Steps:{
+    steps:{
         type: Number,
-        require: true,
+        required: true,
         min: 0,
-
     },
-    Date:{
-         type: Number,
-         default: Date.now
+    date:{
+        type: Date,
+        default: Date.now,
+        required: true
     },
-     Distance:{
+    distance:{
         type: Number,
         default: 0
 
     },
-    Goal:{
+    goal:{
         type: Number,
         default: 10000
     },
-
-    User:{
+    user:{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
 
-
-
 }, {timestamps: true} );
+
+StepsSchema.index({ user: 1, date: 1 });
+
 const Step = mongoose.model("Step", StepsSchema);
 module.exports = Step;

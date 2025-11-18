@@ -4,13 +4,26 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./src/config/db.js");
 const UserRouter = require("./src/routers/user.route.js");
+const StepRouter = require("./src/routers/steps.route.js");
+const SleepRouter = require("./src/routers/sleep.route.js");
+const WaterIntakeRoute = require("./src/routers/waterIntake.route.js");
+const HeartRateRoute = require("./src/routers/heartRate.route.js");
+const CalorieConsumedRoute = require("./src/routers/caloriesConsumed.route.js");
+const CalorieBurnedRoute = require("./src/routers/calorieBurned.route.js");
 
 const app = express();
 const port = process.env.PORT || 5000;
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extendeda: true}));
 app.use(cors());
 app.use("/", UserRouter);
+app.use("/", StepRouter);
+app.use("/", SleepRouter);
+app.use("/", WaterIntakeRoute);
+app.use("/", HeartRateRoute);
+app.use("/", CalorieConsumedRoute);
+app.use("/", CalorieBurnedRoute);
 
 connectDB()
 .then(() => {

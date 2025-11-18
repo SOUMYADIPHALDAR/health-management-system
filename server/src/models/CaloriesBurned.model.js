@@ -1,36 +1,38 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const CaloriesBurnedSchema = new Schema({
-    Activity:{
+    activity:{
         type: String,
-        require: true
+        required: true
     },
-    ActivityDuration:{
+    activityDuration:{
         type: Number,
-        require: true
+        required: true
 
     },
-    CaloriesBurned :{
+    caloriesBurned :{
         type: Number,
-        require: true,
-        min: "1600", //calories
+        required: true,
+        min: 0, //calories
 
     },
-    Date :{
-         type: Number,
+    date :{
+         type: Date,
          default: Date.now
     },
-    Goal:{
+    goal:{
         type: Number,
-        default: "2500" //kcal
+        default: 500 //kcal
     },
 
-    User:{
+    user:{
         type: Schema.Types.ObjectId,
         ref: "User"
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
-
-
 
 }, {timestamps: true});
 
