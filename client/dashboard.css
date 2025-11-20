@@ -97,33 +97,51 @@ body {
   color: #6e78ae;
 }
 
-/* ======= Search Bar ======= */
-.logo-img img {
-  height: 70px;
+.main-header img{
+  height: 80px;
   width: 80px;
 }
 
-/* ======= Chart Section ======= */
+/*=== progress section === */
 .chart-section {
   margin-top: 25px;
-  background: #f9faff;
+  background: #ebeefe;
   border-radius: 20px;
   padding: 20px 25px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
 }
 
-.chart-section h3 {
+.chart-section h2 {
   color: #4b4ded;
-  font-size: 1rem;
-  margin-bottom: 10px;
+  font-size: 1.7rem;
+   margin-top: 10px; 
 }
 
-/* Placeholder for chart */
-.chart {
-  height: 250px;
-  border-radius: 15px;
-  background: linear-gradient(180deg, #e7e9ff 0%, #ffffff 100%);
-  position: relative;
+.chart-section p {
+  color: #505076;
+  font-size: 1rem;
+  margin-bottom:3rem;
+}
+
+.progrss-bar h3{
+  color: #571084;
+  font-size: 1rem;
+}
+
+.bar-bg {
+width: 100%;
+height: 15px;
+background: #fff;
+border-radius: 10px;
+margin: 15px 0;
+}
+
+
+.bar-fill {
+width: 75%;
+height: 100%;
+background:#5a6bec;
+border-radius: 10px;
 }
 
 /* ======= Cards (Bottom Stats) ======= */
