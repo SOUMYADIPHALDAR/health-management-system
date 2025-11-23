@@ -46,3 +46,31 @@ function editGoal() {
         alert("Goal updated to: " + newGoal);
       }
     }
+
+
+// === edit goals===
+
+function openGoalPopup() {
+    document.getElementById("goalPopup").style.display = "block";
+}
+const popup = document.getElementById("goalPopup");
+
+// Show popup when Edit button is clicked
+document.getElementById("editBtn").addEventListener("click", () => {
+    popup.style.display = "block";
+});
+
+// Hide popup when Close button clicked
+document.getElementById("closePopup").addEventListener("click", () => {
+    popup.style.display = "none";
+});
+
+// Add Goal button
+document.getElementById("addGoalBtn").addEventListener("click", () => {
+    let newGoal = prompt("Enter your new goal:");
+    if (newGoal) {
+        const li = document.createElement("li");
+        li.textContent = newGoal;
+        document.getElementById("goalList").appendChild(li);
+    }
+});

@@ -88,12 +88,13 @@
       </div>
     </div>
 
+    
     <!-- Right Panel -->
     <div class="right-panel">
     
       <div class="Goals">
         <h4>My Goals
-        <i class="fa-regular fa-pen-to-square" onclick="editGoal()"></i>
+        <i class="fa-regular fa-pen-to-square" onclick="openGoalPopup()"></i>
         </h4>
         
       </div>
@@ -113,6 +114,30 @@
         <p>8 Hours</p>
       </div>
     
+
+    <!-- Add goals section -->
+     <div class="goal-container" id="goalPopup">
+      <div class="header">
+      <h2>Your Goals</h2>
+      <i class="fa-solid fa-xmark"></i>
+        </div>
+    
+    <ul id="goalList">
+        <li>
+          <input type="text" placeholder="type yor goal" 
+          
+          />
+        </li>
+        <li>Sleep time</li>
+        <li>Water intake</li>
+    </ul>
+    <div class="goal-btn">
+    <button id="addGoalBtn">Add Goal</button>
+    <button id="closePopup"></button>
+    </div>
+</div>
+
+
      
       <!-- </div> -->
     
