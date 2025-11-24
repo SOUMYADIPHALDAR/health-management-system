@@ -22,24 +22,13 @@ function goBack() {
       window.history.back();
     }
 
-    function previewImage(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById("preview").src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
     function saveProfile() {
       alert("Profile updated successfully!");
       window.location.href ="profile.html"
       return false; // Prevent actual form submission for demo
     }
 
-// === dashboard page ===
+
 function editGoal() {
       const newGoal = prompt("Enter your new goal:");
       if (newGoal) {
@@ -53,24 +42,24 @@ function editGoal() {
 function openGoalPopup() {
     document.getElementById("goalPopup").style.display = "block";
 }
-const popup = document.getElementById("goalPopup");
 
-// Show popup when Edit button is clicked
-document.getElementById("editBtn").addEventListener("click", () => {
-    popup.style.display = "block";
-});
+function closePopup(){
+    document.getElementById("goalPopup").style.display = "none";
+}
 
-// Hide popup when Close button clicked
-document.getElementById("closePopup").addEventListener("click", () => {
-    popup.style.display = "none";
-});
+function OpenDelPopup(){
+  document.getElementById("del-goal").style.display="block";
+}
 
+function cancelDel(){
+  document.getElementById("del-goal").style.display="none";
+}
 // Add Goal button
-document.getElementById("addGoalBtn").addEventListener("click", () => {
-    let newGoal = prompt("Enter your new goal:");
-    if (newGoal) {
-        const li = document.createElement("li");
-        li.textContent = newGoal;
-        document.getElementById("goalList").appendChild(li);
-    }
-});
+// document.getElementById("addGoalBtn").addEventListener("click", () => {
+//     let newGoal = prompt("Enter your new goal:");
+//     if (newGoal) {
+//         const li = document.createElement("li");
+//         li.textContent = newGoal;
+//         document.getElementById("goalList").appendChild(li);
+//     }
+// });

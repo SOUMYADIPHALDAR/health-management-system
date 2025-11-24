@@ -79,6 +79,7 @@ body {
   display: flex;
   flex-direction: column;
   background: #ffffff;
+  justify-content: space-between;
 }
 
 .main-header {
@@ -98,13 +99,12 @@ body {
 }
 
 .main-header img{
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
 }
 
 /*=== progress section === */
 .chart-section {
-  margin-top: 25px;
   background: #ebeefe;
   border-radius: 20px;
   padding: 20px 25px;
@@ -117,6 +117,7 @@ body {
    margin-top: 10px; 
 }
 
+
 .chart-section p {
   color: #505076;
   font-size: 1rem;
@@ -125,7 +126,9 @@ body {
 
 .progrss-bar h3{
   color: #571084;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .bar-bg {
@@ -190,19 +193,16 @@ border-radius: 10px;
 }
 
 .Goals h4 {
+  display: flex;
+  justify-content: space-between;
   margin-top: 10px;
  color: #571084;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 
-.Goals h4 i{
-  color: #063cff;
-  font-size: 20px;
-  margin-left: 20px;
-}
-
-/* ======= Info Boxes ======= */
-.info-box {
+/* ======= Goal Boxes ======= */
+.goal-box {
   background: #ffffff;
   border-radius: 15px;
   padding: 15px;
@@ -210,85 +210,151 @@ border-radius: 10px;
   box-shadow: 0 4px 10px rgba(75, 77, 237, 0.08);
 }
 
-.info-box h5 {
+.goal-box h5 {
   font-size: 0.9rem;
   color: #7a7f9a;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
-.info-box p {
+.goal-box p {
   color: #4b4ded;
   font-weight: 600;
   font-size: 1.1rem;
 }
 
+/*=== add goal section ===*/
 .goal-container {
     display: none; /* hide initially */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #fff;
-    width: 500px;
+    background-color: #fff;
+    width: 480px;
     padding: 25px;
     border-radius: 35px;
-    box-shadow: 0 8px 25px rgba(60, 77, 231, 0.295);
+    box-shadow: 0 8px 25px rgba(5, 15, 107, 0.295);
+    text-align: center;
 }
 
 .header{
   display: flex;
-  justify-content: space-between;
-  
+  justify-content: space-between; 
 }
 
 .header i{
   font-size: 14px;
-  color: gray;
+  color: rgb(151, 149, 149);
   right: 0;
   top: 0;
+  cursor: pointer;
 }
 
 .header h2 {
-    color: #4b4ded;
+    color: #571084;
     font-weight: 500;
-    text-align: center;
-    flex: 1;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
-.goal-container ul{
-  list-style: none;
-}
 
-#goalList{
-  padding:25px 5px ;
-  margin-bottom: 1rem;
-}
-
-#goalList li{
+.addGoal{
   display: flex;
+  margin: 1rem 1rem;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
 }
 
-#goalList input{
+.addGoal label{
+  font-weight: 600;
+  color: #68547e;
+}
+
+
+.addGoal input{
   color: #571084;
-  padding: 3px 10px;
-  border: 1px solid #063cff;
-  border-radius:7px ;
-  width: 100%;
+  font-weight: 500;
+  padding: 5px 10px;
+  border: 1.5px solid #bc5cfc;
+  border-radius:10px ;
+  width: 85%;
 }
 
-.goal-btn{
-  padding: 0 25px;
-  display: flex;
-  justify-content: space-between;
+
+
+.addGoal ::placeholder{
+  color: rgb(179, 176, 176);
 }
 
 .goal-btn button{
-  padding: 3px 10px;
+  margin-top: 5px;
+  padding: 7px 25px;
+  border-radius:25px;
+  border: none;
+  background-color: #8736e4;
+  color: white;
+  cursor: pointer;
 }
 
+/*=== delete goal ===*/
+.del-goal{
+  display: none; /* hide initially */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 400px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(5, 15, 107, 0.295);
+    text-align: center;
+}
 
+.del-goal h2{
+  color: #571084;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.del-btn{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  
+}
+
+.cancelBtn{
+  padding: 3px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  background-color: #e0e4f2;
+  color: rgb(69, 68, 68);
+  cursor: pointer;
+}
+
+.cancelBtn:hover{
+  background-color: rgb(109, 107, 107);
+  color: #f6f7f9;
+}
+
+.delBtn{
+  padding: 3px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+}
+
+.delBtn:hover{
+  background-color:#e0e4f2 ;
+  color: red;
+}
 
 /*===== Responsive Design===== */
 
