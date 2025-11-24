@@ -35,32 +35,23 @@
           <h2>Hello User</h2>
           <small>Another step towards your Goal</small>
         </div>
-
-
         <div class="logo-img">
           <img src="images/logo.jpg">
         </div>
       </div>
 
-      <!-- Chart Section -->
+      <!-- Progress Section -->
       <div class="chart-section">
         <h2>Grate Progress Today!</h2>
         <p> You are on track to meet your goals. Keep pushing forward!</p>
         <div class="progrss-bar">
-          <!-- You can integrate Chart.js or any chart library here -->
           <h3>Daily Goal Progress
-            -75%
+            <per>75%</per>
           </h3>
-          
+
           <div class="bar-bg">
-            <div class="bar-fill">
-
-            </div>
+            <div class="bar-fill"></div>
           </div>
-
-
-          
-
         </div>
       </div>
 
@@ -88,64 +79,73 @@
       </div>
     </div>
 
-    
+
     <!-- Right Panel -->
     <div class="right-panel">
-    
       <div class="Goals">
         <h4>My Goals
-        <i class="fa-regular fa-pen-to-square" onclick="openGoalPopup()"></i>
+          <i class="fa-solid fa-plus" onclick="openGoalPopup()"></i>
         </h4>
-        
+
       </div>
 
-      <div class="info-box">
-        <h5>Water Intake</h5>
+      <div class="goal-box">
+        <h5>Water Intake
+          <i class="fa-solid fa-ellipsis" onclick="OpenDelPopup()"></i>
+        </h5>
         <p>3 ltr</p>
       </div>
-    
-      <div class="info-box">
+
+      <div class="goal-box">
         <h5>Steps</h5>
         <p>10k</p>
       </div>
-    
-      <div class="info-box">
+
+      <div class="goal-box">
         <h5>Sleep</h5>
         <p>8 Hours</p>
       </div>
-    
 
-    <!-- Add goals section -->
-     <div class="goal-container" id="goalPopup">
-      <div class="header">
-      <h2>Your Goals</h2>
-      <i class="fa-solid fa-xmark"></i>
-        </div>
-    
-    <ul id="goalList">
-        <li>
-          <input type="text" placeholder="type yor goal" 
+
+      <!-- Add goals section -->
+      <div class="goal-container" id="goalPopup">
+        <div class="header">
+          <h2>Add New Goal</h2>
           
-          />
-        </li>
-        <li>Sleep time</li>
-        <li>Water intake</li>
-    </ul>
-    <div class="goal-btn">
-    <button id="addGoalBtn">Add Goal</button>
-    <button id="closePopup"></button>
-    </div>
-</div>
+          <i class="fa-solid fa-xmark" onclick="closePopup()"></i>
+        </div>
+
+        <div class="addGoal">
+          <label>Name</label>
+          <input type="text" placeholder="Write Your Goal Name">
+        </div>
+        <div class="addGoal">
+          <label>Goal</label>
+          <input type="text" placeholder="Your Target">
+        </div>
+        <div class="goal-btn">
+          <button id="addGoalBtn">Add Goal</button>
+        </div>
+      </div>
+<!-- delete goal section -->
+      <div class="del-goal" id="del-goal">
+        <h2>Delete this goal?</h2>
+        <div class="del-btn">
+        <button class="cancelBtn" onclick="cancelDel()">Cancel</button>
+        <button class="delBtn" onclick="deleteGoal()">Delete</button>
+        </div>
+      </div>
 
 
-     
+
+
       <!-- </div> -->
-    
-      
+
+
     </div>
-    
-    </div>
-    <script src="script.js"></script>
+
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
