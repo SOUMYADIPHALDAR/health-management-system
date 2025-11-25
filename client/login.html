@@ -4,64 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f5f7fa;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 300px;
-      text-align: center;
-    }
-    h2 { margin-bottom: 20px; }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #007bff;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    a {
-      display: block;
-      margin-top: 10px;
-      color: #007bff;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
 </head>
 <body>
   <div class="container">
-    <h2>LOGIN</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Log In</button>
-    <a href="#">Forgot password?</a>
-  </div>
+        
+        <!-- Left Side -->
+        <div class="left">
+            <h2>Welcome!</h2>
+            <p>your journey to better health continues here.</p>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right">
+            <h2>Create Account</h2>
+
+            <div class="btn-social">
+                <button> Sign up with Google</button>
+                <button> Sign up with Facebook</button>
+            </div>
+
+            <div class="or">— OR —</div>
+
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+
+            <div class="password-field">
+                <input type="password" id="password" placeholder="Password">
+                <i class="fa-solid fa-eye" onclick="togglePassword()"></i>
+            </div>
+
+            <button class="create-btn">Create Account</button>
+
+            <p class="login-text">Already have an Account? <a href="#">Log in</a></p>
+        </div>
+
+    </div>
 
   <script src="script.js"></script>
 </body>
