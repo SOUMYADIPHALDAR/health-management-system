@@ -24,53 +24,6 @@ body {
   overflow: hidden;
 }
 
-/* ======= Sidebar ======= */
-.sidebar {
-  width: 220px;
-  background: #f8f9ff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 25px 20px;
-  border-right: 1px solid #e0e4f2;
-}
-
-.sidebar .logo {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #4b4ded;
-  margin-bottom: 70px;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar ul li {
-  margin: 50px 0;
-  font-size: 0.95rem;
-  color: #7a7f9a;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-
-.sidebar ul li a{
-  text-decoration: none;
-}
-
-
-.sidebar ul li i{
-  padding-right: 10px;
-}
-
-.sidebar ul li:hover,
-.sidebar ul li.active {
-   color: #571084;
-  font-weight: 600;
-}
-
-
 
 /*=== Login Page ===*/
 .login-container {
@@ -113,6 +66,22 @@ body {
     background-color: #e6eeff;
     padding: 40px;
     text-align: center;
+    
+}
+
+.right-Login{
+    height: 100%;
+    width: 50%;
+    background-color: #e6eeff;
+    padding:80px 40px ;
+    text-align: center;
+}
+
+.right-Login h2{
+     margin-bottom: 1.5rem;
+            font-size: 26px;
+            font-weight: 600;
+            color: #30308e;
 }
 
 .right h2 {

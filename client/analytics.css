@@ -1,0 +1,74 @@
+/* ======= Global Styles ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f4f6fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ======= Dashboard Layout ======= */
+.container {
+  width: 1200px;
+  height: 100%;
+  display: flex;
+  border-radius: 25px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+
+/* ======= Sidebar ======= */
+.sidebar {
+  width: 220px;
+  background: #f8f9ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px 20px;
+  border-right: 1px solid #e0e4f2;
+}
+
+.sidebar .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4b4ded;
+  margin-bottom: 70px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 50px 0;
+  font-size: 0.95rem;
+  color: #7a7f9a;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+
+.sidebar ul li a{
+  text-decoration: none;
+}
+
+
+.sidebar ul li i{
+  padding-right: 10px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+   color: #571084;
+  font-weight: 600;
+}
+
