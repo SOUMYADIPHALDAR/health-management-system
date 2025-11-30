@@ -180,18 +180,6 @@ textarea:focus {
 }
 
 
-/*===== Responsive Design===== */
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-    width: 95%;
-  }
-  .sidebar, .right-panel {
-    width: 100%;
-    border: none;
-  }
-}
 
 
 
