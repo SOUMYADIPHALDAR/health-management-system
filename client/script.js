@@ -1,3 +1,11 @@
+//Login or signup page functions
+function OpenDB(){
+    window.location.href="dashboard.html";
+}
+
+
+
+
 // === profile page ===
 function editProfile() {
       window.location.href = "editProfile.html";
