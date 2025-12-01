@@ -76,7 +76,7 @@ body {
 /* ======= Main Content ======= */
 .main {
  flex: 1;
-  padding: 20px 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -107,18 +107,19 @@ body {
 .username{
   font-size: 20px;
   color: #571084;
+  margin-bottom: 2rem;
 }
 
 
 .user-status {
   display: flex;
   justify-content:space-between;
-  margin: 1rem 3rem;
+  margin: 1rem 2rem;
 }
 
 .stat {
   background-color: white;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 3.5rem;
   border-radius: 15px;
   /* text-align: center; */
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -161,28 +162,29 @@ body {
         border-radius: 5px;
         padding: 3px 10px;
         font-size: 1rem;
-        color:#4b4ded;
+        color:#1e22f5;
         margin-bottom: 1rem;
 }
 
 .edit-btn {
-   margin-left: 44%;
+    margin-top: 1.3rem;
+    margin-left: 43%;
     font-size: 16px;
-  background:#4b4ded;
-  color: white;
-  border: none;
-  padding: 0.2rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-  text-align: center;
-  align-items: center;
+    background-color: #532e64;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+    text-align: center;
+    align-items: center;
 }
 
 .edit-btn:hover {
   color: #ffffff;
-  background-color: #532e64;
+  background:#4b4ded;
 }
 
 

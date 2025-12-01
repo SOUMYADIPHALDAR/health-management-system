@@ -1,8 +1,46 @@
-//Login or signup page functions
-function OpenDB(){
-    window.location.href="dashboard.html";
-}
+// === sign up page ===
+// Select the form
+const form = document.getElementById("signupForm");
 
+form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Stop form from reloading the page
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    // Basic validation
+    if (name === "" || email === "" || password === "" || confirmPassword === "") {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    if (!email.includes("@")) {
+        alert("Enter a valid email address.");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    // Success
+    alert("Account created successfully!");
+    
+    // Example: save data in localStorage
+    const user = { name, email, password };
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Redirect to login page (optional)
+    window.location.href = "dashboard.html";
+});
 
 
 
@@ -14,15 +52,20 @@ function editProfile() {
 
 // === login page ===
  function login() {
-      const user = document.getElementById("username").value;
+      const user = document.getElementById("email").value;
       const pass = document.getElementById("password").value;
 
       if (user && pass) {
         // Redirect to dashboard
         window.location.href = "dashboard.html";
       } else {
-        alert("Please enter username and password!");
+        alert("Please enter Email Address and Password!");
       }
+
+      if (!email.includes("@")) {
+        alert("Enter a valid email address.");
+        return;
+    }
     }
 
     function togglePassword() {
@@ -34,6 +77,7 @@ function editProfile() {
         }
       }
 
+      
 // === edit profile page ===
 function goBack() {
       window.history.back();
@@ -46,37 +90,3 @@ function goBack() {
     }
 
 
-function editGoal() {
-      const newGoal = prompt("Enter your new goal:");
-      if (newGoal) {
-        alert("Goal updated to: " + newGoal);
-      }
-    }
-
-
-// === edit goals===
-
-function openGoalPopup() {
-    document.getElementById("goalPopup").style.display = "block";
-}
-
-function closePopup(){
-    document.getElementById("goalPopup").style.display = "none";
-}
-
-function OpenDelPopup(){
-  document.getElementById("del-goal").style.display="block";
-}
-
-function cancelDel(){
-  document.getElementById("del-goal").style.display="none";
-}
-// Add Goal button
-// document.getElementById("addGoalBtn").addEventListener("click", () => {
-//     let newGoal = prompt("Enter your new goal:");
-//     if (newGoal) {
-//         const li = document.createElement("li");
-//         li.textContent = newGoal;
-//         document.getElementById("goalList").appendChild(li);
-//     }
-// });
