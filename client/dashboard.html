@@ -19,7 +19,6 @@
         <h2 class="logo">Track Yourself</h2>
         <ul>
           <li class="active"><a href=""><i class="fa-solid fa-house"></i>Dashboard</a></li>
-          <li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
           <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
           <li><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
           <li><a href="signUp.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
@@ -80,75 +79,60 @@
 
 
     <!-- Right Panel -->
-    <div class="right-panel">
-      <div class="Goals">
-        <h4>My Goals
-          <i class="fa-solid fa-plus" onclick="openGoalPopup()"></i>
-        </h4>
+    <!-- ================= RIGHT PANEL ================= -->
+<div class="right-panel">
 
+  <!-- ======= GOALS HEADER ======= -->
+  <div class="goal-header">
+    <h4>My Goals</h4>
+    <i class="fa-solid fa-plus add-icon" onclick="openGoalPopup()"></i>
+  </div>
+
+  <!-- ======= GOAL LIST ======= -->
+  <ul id="goal-box" class="goal-box">
+    <!-- JS inserts goals here -->
+  </ul>
+
+  <!-- ======= ADD GOAL POPUP ======= -->
+  <div id="goalPopup" class="goal-popup">
+    <div class="popup-card">
+
+      <div class="popup-header">
+        <h2>Add New Goal</h2>
+        <i class="fa-solid fa-xmark close-btn" onclick="closePopup()"></i>
       </div>
 
-      <div class="goal-box">
-        <h5>Water Intake
-          <i class="fa-regular fa-trash-can" onclick="OpenDelPopup()"></i>
-        </h5>
-        <p>3 ltr</p>
+      <div class="popup-body">
+        <label>Goal Name</label>
+        <input id="label" type="text" placeholder="Enter goal title">
+
+        <label>Description / Target</label>
+        <input id="goal" type="text" placeholder="Enter goal target">
       </div>
 
-      <div class="goal-box">
-        <h5>Steps
-          <i class="fa-regular fa-trash-can"></i>
-        </h5>
-        <p>10k</p>
-      </div>
+      <button onclick="addGoal()" class="addGoalBtn">Add Goal</button>
+    </div>
+  </div>
 
-      <div class="goal-box">
-        <h5>Sleep
-          <i class="fa-regular fa-trash-can"></i>
-        </h5>
-        <p>8 Hours</p>
-      </div>
+  <!-- ======= DELETE CONFIRM POPUP ======= -->
+  <div id="del-goal" class="delete-popup">
+    <div class="delete-card">
+      <h3>Delete this goal?</h3>
 
-
-      <!-- Add goals section -->
-      <div class="goal-container" id="goalPopup">
-        <div class="header">
-          <h2>Add New Goal</h2>
-          
-          <i class="fa-solid fa-xmark" onclick="closePopup()"></i>
-        </div>
-
-        <div class="addGoal">
-          <label>Name</label>
-          <input type="text" placeholder="Write Your Goal Name">
-        </div>
-        <div class="addGoal">
-          <label>Goal</label>
-          <input type="text" placeholder="Your Target">
-        </div>
-        <div class="goal-btn">
-          <button id="addGoalBtn">Add Goal</button>
-        </div>
-      </div>
-<!-- delete goal section -->
-      <div class="del-goal" id="del-goal">
-        <h2>Delete this goal?</h2>
-        <div class="del-btn">
+      <div class="delete-actions">
         <button class="cancelBtn" onclick="cancelDel()">Cancel</button>
         <button class="delBtn" onclick="deleteGoal()">Delete</button>
-        </div>
       </div>
-
-
-
-
-      <!-- </div> -->
-
-
     </div>
+  </div>
+
+</div>
+
+
+    
 
   </div>
-  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 
 </html>

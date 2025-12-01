@@ -19,6 +19,7 @@
 
         <!-- Right Side -->
         <div class="right">
+          <form id="signupForm">
             <h2>Create Account</h2>
 
             <div class="btn-social">
@@ -27,18 +28,26 @@
             </div>
 
             <div class="or">— OR —</div>
+            <form id="signupForm">
+              <input id="name" type="text" placeholder="Full Name">
+              <input id="email" type="email" placeholder="Email Address">
 
-            <input type="text" placeholder="Full Name">
-            <input type="email" placeholder="Email">
+              <div class="password-field">
+                  <input type="password" id="password" placeholder="Password (atleast 6 characters)">
+                  <i class="fa-solid fa-eye" onclick="togglePassword()"></i>
+              </div>
 
-            <div class="password-field">
-                <input type="password" id="password" placeholder="Password">
-                <i class="fa-solid fa-eye" onclick="togglePassword()"></i>
-            </div>
+              <div class="password-field">
+                  <input type="text" id="confirmPassword" placeholder="Confirm Password">
+                 
+              </div>
 
-            <button class="create-btn" onclick="OpenDB()">Create Account</button>
 
+
+              <button type="submit" class="create-btn" onclick="signup()">Create Account</button>
+            </form>
             <p class="login-text">Already have an Account? <a href="signIn.html">Log in</a></p>
+          </form>
         </div>
 
     </div>

@@ -122,9 +122,9 @@ body {
 
         input {
             width: 100%;
-            padding: 8px;
+            padding: 7px 15px;
             color: #013ee7;
-            font-weight: 550;
+            font-weight: 450;
             margin-bottom:10px ;
             border-radius: 10px;
             border: none;
@@ -135,7 +135,10 @@ body {
         }
         input::placeholder{
             color: rgb(161, 161, 161);
+            font-weight: 400;
         }
+
+
 
         .password-field {
             position: relative;
@@ -155,7 +158,6 @@ body {
         }
 
         .create-btn {
-            
             padding: 9px 20px;
             background: #4444a8;
             color: white;
