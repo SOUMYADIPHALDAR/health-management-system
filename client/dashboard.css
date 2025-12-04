@@ -107,14 +107,14 @@ body {
 
 /*=== progress section === */
 .chart-section {
-  background: #ebeefe;
+  background: #eceefa;
   border-radius: 20px;
   padding: 20px 25px;
   box-shadow: 0 4px 12px rgba(6, 6, 111, 0.831);
 }
 
 .chart-section h2 {
-  color: #4b4ded;
+  color: #3a3df2;
   font-size: 1.7rem;
    margin-top: 10px; 
 }
@@ -126,7 +126,7 @@ body {
   margin-bottom:3rem;
 }
 
-.progrss-bar h3{
+.progress-bar h3{
   color: #571084;
   font-size: 1.2rem;
   display: flex;
@@ -195,7 +195,7 @@ border-radius: 10px;
   flex-direction: column;
 }
 
-
+/* Header */
 .goal-header {
   display: flex;
   justify-content: space-between;
@@ -243,6 +243,7 @@ border-radius: 10px;
   transform: translateY(-2px);
 }
 
+
 .goal-text {
   line-height: 25px;
   display: flex;
@@ -272,29 +273,245 @@ border-radius: 10px;
   transform: scale(1.2);
 }
 
-/* ================= POPUP (Add Goal) ================ */
 
-.goal-popup,
-.delete-popup {
-  display: none;
+/* Popups */
+.popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(3px);
+  display: none;
   justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.616);
+  z-index: 1000;
+}
+
+.popup-card, .small-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 380px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.726);
+  animation: fadeIn 0.3s ease;
+}
+
+
+/* Popup Header */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.popup-card,
-.delete-card {
+.popup-header h2{
+  color: #571084;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  font-size: 14px;
+  cursor: pointer;
+  color: rgb(151, 151, 151);
+  padding-bottom: 30px;
+}
+
+/* Inputs & Selects */
+.popup-body label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+  color: #3a3df2;
+  font-weight: 600;
+}
+
+.popup-body input,
+.popup-body select {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 8px;
+  margin-top: 4px;
+  font-size: 14px;
+  color: #571084;
+}
+
+.popup-body select:focus,
+.popup-body input:focus {
+  border-color: #3a7afe;  
+  box-shadow: 0 0 5px rgba(58, 122, 254, 0.3);
+}
+ 
+.primary-btn{
+  width: 100%;
+  margin-top: 15px;
+  padding: 7px;
+  background: #571084;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+} 
+
+.primary-btn:hover{
+   background: #3a3df2;
+  color: #fff;
+}
+
+
+.small-card h3{
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #571084;
+}
+
+.secondary-btn, .danger-btn{
+  padding: 7px 20px;
+  border-radius: 13px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  transform: 0.3s;
+}
+
+.secondary-btn{
+  background-color: gray;
+  color: #fff;
+}
+  
+.secondary-btn:hover{
+  background-color: #ddd;
+  color: rgb(90, 89, 89);
+  font-weight: 600;
+}
+
+
+.danger-btn{
+  color: #fff;
+  background-color: rgb(211, 8, 8);
+}
+
+.danger-btn:hover{
+  color:rgb(211, 8, 8);
+  font-weight: 600;
+  background-color: #ddd;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Goal List */
+
+
+
+
+
+/* ================= POPUP (Add Goal) ================ */
+/* Container styling */
+/* .popup-body {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  width: 380px;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  gap: 12px;
+  margin-top: 10px;
 }
+
+/* Labels */
+/* .popup-body label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+} */
+
+/* Select dropdown */
+/* .popup-body select { */
+  /* width: 100%;
+  padding: 10px 12px;
+  border: 1.8px solid #dcdcdc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+  cursor: pointer;
+} */
+
+/* On focus dropdown */
+/* .popup-body select:focus {
+  border-color: #3a7afe;  
+  box-shadow: 0 0 5px rgba(58, 122, 254, 0.3);
+} */
+
+/* Input styling */
+/* .popup-body input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.8px solid #dcdcdc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+} */
+
+/* Focus input */
+/* .popup-body input:focus {
+  border-color: #3a7afe;
+  box-shadow: 0 0 5px rgba(58, 122, 254, 0.3);
+} */
+
+/* Add Goal Button */
+/* .addGoalBtn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: #3a7afe;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+} 
+
+.addGoalBtn:hover {
+  background: #2f66e0;
+}
+
+
+
+
+
+
+
+
 
 .popup-header,
 .delete-card {
@@ -315,7 +532,7 @@ border-radius: 10px;
   cursor: pointer;
 }
 
-.popup-body label {
+/* .popup-body label {
   color: #4b4ded;
   font-weight: 500;
   font-size: 16px;
@@ -323,7 +540,16 @@ border-radius: 10px;
   display: block;
 }
 
-.popup-body input {
+.popup-body input{
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+} */ 
+
+/* #goalName option{
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -346,11 +572,11 @@ border-radius: 10px;
 
 .addGoalBtn:hover {
   background: #571084;
-}
+} */
 
 /* ================= DELETE POPUP ================ */
 
-.delete-card h3 {
+/* .delete-card h3 {
   color: #571084;
   font-size: 18px;
   margin-bottom: 20px;
@@ -390,6 +616,6 @@ border-radius: 10px;
 .delBtn:hover {
  background:#dfdfe0;
   color: #e63946;
-}
+} */ 
 
 
