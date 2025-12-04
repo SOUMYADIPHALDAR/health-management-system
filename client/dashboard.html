@@ -40,9 +40,9 @@
 
       <!-- Progress Section -->
       <div class="chart-section">
-        <h2>Grate Progress Today!</h2>
+        <h2>Great Progress Today!</h2>
         <p> You are on track to meet your goals. Keep pushing forward!</p>
-        <div class="progrss-bar">
+        <div class="progress-bar">
           <h3>Daily Goal Progress
             <per>75%</per>
           </h3>
@@ -78,56 +78,58 @@
     </div>
 
 
-    <!-- Right Panel -->
     <!-- ================= RIGHT PANEL ================= -->
 <div class="right-panel">
 
-  <!-- ======= GOALS HEADER ======= -->
+  <!-- Goals Header -->
   <div class="goal-header">
     <h4>My Goals</h4>
     <i class="fa-solid fa-plus add-icon" onclick="openGoalPopup()"></i>
   </div>
 
-  <!-- ======= GOAL LIST ======= -->
-  <ul id="goal-box" class="goal-box">
-    <!-- JS inserts goals here -->
-  </ul>
+  <!-- Goals List -->
+  <ul id="goal-box" class="goal-box"></ul>
 
-  <!-- ======= ADD GOAL POPUP ======= -->
-  <div id="goalPopup" class="goal-popup">
+  <!-- Add Goal Popup -->
+  <div id="goalPopup" class="popup-overlay">
     <div class="popup-card">
-
       <div class="popup-header">
         <h2>Add New Goal</h2>
-        <i class="fa-solid fa-xmark close-btn" onclick="closePopup()"></i>
+        <i class="fa-solid fa-xmark close-btn" onclick="closeGoalPopup()"></i>
       </div>
 
       <div class="popup-body">
-        <label>Goal Name</label>
-        <input id="label" type="text" placeholder="Enter goal title">
+        <label for="goalName">Goal Name</label>
+        <select id="goalName" class="goal-select">
+          <option value="" disabled selected>Select goal name</option>
+          <option value="Study">Study</option>
+          <option value="Workout">Workout</option>
+          <option value="Savings">Savings</option>
+          <option value="Skill Learning">Skill Learning</option>
+          <option value="Read Books">Read Books</option>
+          <option value="Sleep Schedule">Sleep Schedule</option>
+        </select>
 
-        <label>Description / Target</label>
-        <input id="goal" type="text" placeholder="Enter goal target">
+        <label for="goalDesc">Description / Target</label>
+        <input id="goalDesc" type="text" placeholder="e.g. 2 hours daily, ₹50 per day">
       </div>
 
-      <button onclick="addGoal()" class="addGoalBtn">Add Goal</button>
+      <button class="primary-btn" onclick="addGoal()">Add Goal</button>
     </div>
   </div>
 
-  <!-- ======= DELETE CONFIRM POPUP ======= -->
-  <div id="del-goal" class="delete-popup">
-    <div class="delete-card">
+  <!-- Delete Confirmation Popup -->
+  <div id="deletePopup" class="popup-overlay">
+    <div class="small-card">
       <h3>Delete this goal?</h3>
-
-      <div class="delete-actions">
-        <button class="cancelBtn" onclick="cancelDel()">Cancel</button>
-        <button class="delBtn" onclick="deleteGoal()">Delete</button>
+      <div class="popup-actions">
+        <button class="secondary-btn" onclick="closeDeletePopup()">Cancel</button>
+        <button class="danger-btn" onclick="confirmDelete()">Delete</button>
       </div>
     </div>
   </div>
 
 </div>
-
 
     
 

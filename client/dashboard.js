@@ -1,56 +1,70 @@
-const labelInput = document.getElementById("label");
-const goalInput = document.getElementById("goal");
-const goalBox = document.getElementById("goal-box");
-const deletePopup = document.getElementById("del-goal");
-const goalPopup = document.getElementById("goalPopup");
+const goalNameSelect = document.getElementById("goalName");
+const goalDescInput  = document.getElementById("goalDesc");
+const goalBox        = document.getElementById("goal-box");
+
+const addPopup    = document.getElementById("goalPopup");
+const deletePopup = document.getElementById("deletePopup");
 
 let goals = [];
 let deleteIndex = null;
 
-// ============ POPUP CONTROL ============
+/* ---------- POPUP CONTROL ---------- */
 function openGoalPopup() {
-  goalPopup.style.display = "flex";
+  addPopup.style.display = "flex";
 }
 
-function closePopup() {
-  goalPopup.style.display = "none";
+function closeGoalPopup() {
+  addPopup.style.display = "none";
 }
 
-// ============ DELETE POPUP ============
 function openDeletePopup(index) {
   deleteIndex = index;
   deletePopup.style.display = "flex";
 }
 
-function cancelDel() {
+function closeDeletePopup() {
   deletePopup.style.display = "none";
+  deleteIndex = null;
 }
 
-function deleteGoal() {
-  goals.splice(deleteIndex, 1);
-  saveGoals();
-  renderGoals();
-  deletePopup.style.display = "none";
-}
-
-// ============ ADD GOAL ============
+/* ---------- ADD GOAL ---------- */
 function addGoal() {
-  if (!labelInput.value.trim()) return alert("Enter a goal name");
+  const selectedValue = goalNameSelect.value;
+  const selectedText =
+    goalNameSelect.options[goalNameSelect.selectedIndex]?.text || "";
+
+  if (!selectedValue) {
+    alert("Please select a goal name");
+    return;
+  }
+
+  const desc = goalDescInput.value.trim();
 
   goals.push({
-    name: labelInput.value,
-    target: goalInput.value
+    name: selectedText,   // or selectedValue, both same here
+    desc: desc
   });
 
   saveGoals();
   renderGoals();
 
-  labelInput.value = "";
-  goalInput.value = "";
-  closePopup();
+  // Reset fields
+  goalNameSelect.selectedIndex = 0; // back to "Select goal name"
+  goalDescInput.value = "";
+  closeGoalPopup();
 }
 
-// ============ RENDER GOALS ============
+/* ---------- DELETE GOAL ---------- */
+function confirmDelete() {
+  if (deleteIndex !== null && deleteIndex >= 0 && deleteIndex < goals.length) {
+    goals.splice(deleteIndex, 1);
+    saveGoals();
+    renderGoals();
+  }
+  closeDeletePopup();
+}
+
+/* ---------- RENDER GOALS ---------- */
 function renderGoals() {
   goalBox.innerHTML = "";
 
@@ -59,20 +73,20 @@ function renderGoals() {
     li.className = "goal-item";
 
     li.innerHTML = `
-      <span class="goal-text"> 
+      <span class="goal-text">
         <strong>${g.name}</strong>
-        <small>${g.target}</small>
+        <small>${g.desc || ""}</small>
       </span>
-
       <i class="fa-solid fa-trash delete-icon"></i>
     `;
 
     li.querySelector(".delete-icon").onclick = () => openDeletePopup(index);
+
     goalBox.appendChild(li);
   });
 }
 
-// ============ STORAGE ============
+/* ---------- STORAGE ---------- */
 function saveGoals() {
   localStorage.setItem("goalsJSON", JSON.stringify(goals));
 }
