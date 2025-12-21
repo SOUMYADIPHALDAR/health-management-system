@@ -328,7 +328,7 @@ border-radius: 10px;
 .popup-body select {
   width: 100%;
   padding: 6px 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border: 1px solid #ddd;
   outline: none;
   border-radius: 8px;
@@ -364,7 +364,7 @@ border-radius: 10px;
 
 .small-card h3{
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   color: #571084;
 }
 
@@ -375,6 +375,7 @@ border-radius: 10px;
   border: none;
   font-size: 14px;
   transform: 0.3s;
+  margin-top: 1rem;
 }
 
 .secondary-btn{
@@ -402,7 +403,8 @@ border-radius: 10px;
 
 .popup-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 5.5rem;
 }
 
 @keyframes fadeIn {
