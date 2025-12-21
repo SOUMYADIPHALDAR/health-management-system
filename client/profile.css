@@ -76,12 +76,11 @@ body {
 /* ======= Main Content ======= */
 .main {
  flex: 1;
-  padding: 20px;
+  padding: 35px 25px;
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.5rem; 
 }
 
 
@@ -94,8 +93,7 @@ body {
   text-align: center;
   width: 100%;
   height: auto;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  
+  box-shadow: 0 2px 6px rgba(5, 5, 52, 0.53);
 }
 
 .profile-card img{
@@ -121,8 +119,7 @@ body {
   background-color: white;
   padding: 0.5rem 3.5rem;
   border-radius: 15px;
-  /* text-align: center; */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s;
 }
 
@@ -140,11 +137,13 @@ body {
 
 
 /* Info cards */
-.info-card { 
+.info-card {
+  display: flex; 
+  flex-direction: column;
   background: #eceefa;
   border-radius:15px ;
   padding:20px 30px ;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(5, 5, 52, 0.53);
   align-items: center;
   justify-content:space-between;
   
@@ -158,6 +157,7 @@ body {
 } 
 
 .info-card p{
+        width: 100%;
         border: 1.5px solid rgb(133, 120, 147);
         border-radius: 5px;
         padding: 3px 10px;
@@ -167,19 +167,18 @@ body {
 }
 
 .edit-btn {
-    margin-top: 1.3rem;
-    margin-left: 43%;
+    margin-top: 1.5rem;
     font-size: 16px;
     background-color: #74209b;
     color: white;
     border: none;
     padding: 0.5rem 1.5rem;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 500;
     transition: 0.3s;
     text-align: center;
-    align-items: center;
+    
 }
 
 .edit-btn:hover {
