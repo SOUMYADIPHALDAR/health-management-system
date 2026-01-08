@@ -88,5 +88,3 @@ function goBack() {
       window.location.href ="profile.html"
       return false; // Prevent actual form submission for demo
     }
-
-
