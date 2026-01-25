@@ -7,7 +7,7 @@ const {
     updateHeartRateRecord,
     deleteHeartRateRecord,
     deleteAllHeartRateRecords
-} = require("../controllers/heatthRate.controller.js");
+} = require("../controllers/heartRate.controller.js");
 const verifyUser = require("../middlewares/user.middleware.js");
 
 router.post("/heartRate", verifyUser, addHeartRateRecords);

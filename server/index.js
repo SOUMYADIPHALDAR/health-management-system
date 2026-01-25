@@ -19,10 +19,8 @@ app.use(express.urlencoded({extendeda: true}));
 app.use(cors());
 app.use("/", UserRouter);
 app.use("/", StepRouter);
-app.use("/", SleepRouter);
 app.use("/", WaterIntakeRoute);
 app.use("/", HeartRateRoute);
-app.use("/", CalorieConsumedRoute);
 app.use("/", CalorieBurnedRoute);
 
 connectDB()
