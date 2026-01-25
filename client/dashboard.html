@@ -5,122 +5,132 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
 </head>
 
 <body>
-  <div class="dashboard-container">
+  <div class="container">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <div>
-        <h2 class="logo">Track Yourself</h2>
-        <ul>
-          <li class="active"><a href=""><i class="fa-solid fa-house"></i>Dashboard</a></li>
-          <li><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
-          <li><a href=""><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
-          <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
-          <li><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Main Section -->
-    <div class="main">
-      <div class="main-header">
+      <!-- Sidebar -->
+      <div class="sidebar">
         <div>
-          <h2>Hello User</h2>
-          <small>Another step towards your Goal</small>
-        </div>
-
-
-        <div class="logo-img">
-          <img src="images/logo.jpg">
+          <h2 class="logo">Track Yourself</h2>
+          <ul>
+            <li class="active"><a href=""><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li><a href="notification.html"><i class="fa-solid fa-bell"></i> Notifications</a></li>
+            <li><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
+            <li><a href="signUp.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+          </ul>
         </div>
       </div>
 
-      <!-- Chart Section -->
-      <div class="chart-section">
-        <h2>Grate Progress Today!</h2>
-        <p> You are on track to meet your goals. Keep pushing forward!</p>
-        <div class="progrss-bar">
-          <!-- You can integrate Chart.js or any chart library here -->
-          <h3>Daily Goal Progress
-            -75%
-          </h3>
-          
-          <div class="bar-bg">
-            <div class="bar-fill">
+      <!-- Main Section -->
+      <div class="main">
+        <div class="main-header">
+          <div>
+            <h2>Hello User</h2>
+            <small>Another step towards your Goal</small>
+          </div>
+          <div class="logo-img">
+            <img src="images/logo.jpg">
+          </div>
+        </div>
 
+        <!-- Progress Section -->
+        <div class="chart-section">
+          <h2>Great Progress Today!</h2>
+          <p> You are on track to meet your goals. Keep pushing forward!</p>
+          <div class="progress-bar">
+            <h3>Daily Goal Progress
+              <per>75%</per>
+            </h3>
+
+            <div class="bar-bg">
+              <div class="bar-fill"></div>
             </div>
           </div>
+        </div>
 
+        <!-- Bottom Cards -->
+        <div class="cards">
+          <div class="card">
+            <h4>Steps Count</h4>
+            <p>5,095</p>
+          </div>
 
-          
+          <div class="card">
+            <h4>Calories Burned</h4>
+            <p>350</p>
+          </div>
 
+          <div class="card">
+            <h4>Water Intake</h4>
+            <p>2 ltr</p>
+          </div>
+
+          <div class="card">
+            <h4>Heart Rate</h4>
+            <p>65 bpm</p>
+          </div>
         </div>
       </div>
+    
 
-      <!-- Bottom Cards -->
-      <div class="cards">
-        <div class="card">
-          <h4>Steps Count</h4>
-          <p>5,095</p>
-        </div>
-
-        <div class="card">
-          <h4>Calories Burned</h4>
-          <p>350</p>
-        </div>
-
-        <div class="card">
-          <h4>Water Intake</h4>
-          <p>2 ltr</p>
-        </div>
-
-        <div class="card">
-          <h4>Heart Rate</h4>
-          <p>65 bpm</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Panel -->
+      <!-- ================= RIGHT PANEL ================= -->
     <div class="right-panel">
-    
-      <div class="Goals">
-        <h4>My Goals
-        <i class="fa-regular fa-pen-to-square" onclick="editGoal()"></i>
-        </h4>
-        
+
+      <!-- Goals Header -->
+      <div class="goal-header">
+        <h4>My Goals</h4>
+        <i class="fa-solid fa-plus add-icon" onclick="openGoalPopup()"></i>
       </div>
 
-      <div class="info-box">
-        <h5>Water Intake</h5>
-        <p>3 ltr</p>
+      <!-- Goals List -->
+      <ul id="goal-box" class="goal-box"></ul>
+
+      <!-- Add Goal Popup -->
+      <div id="goalPopup" class="popup-overlay">
+        <div class="popup-card">
+          <div class="popup-header">
+            <h2>Add New Goal</h2>
+            <i class="fa-solid fa-xmark close-btn" onclick="closeGoalPopup()"></i>
+          </div>
+
+          <div class="popup-body">
+            <label for="goalName">Goal Name</label>
+            <select id="goalName" class="goal-select">
+              <option value="" disabled selected>Select goal name</option>
+              <option value="waterIntake">Water Intake</option>
+              <option value="Workout">Workout</option>
+              <option value="stepsCount">Steps Count</option>
+              <option value="Sleep Schedule">Sleep Schedule</option>
+            </select>
+
+            <label for="goalDesc">Description / Target</label>
+            <input id="goalDesc" type="text" placeholder="e.g. 8 Hours">
+          </div>
+
+          <button class="primary-btn" onclick="addGoal()">Add Goal</button>
+        </div>
       </div>
-    
-      <div class="info-box">
-        <h5>Steps</h5>
-        <p>10k</p>
+
+      <!-- Delete Confirmation Popup -->
+      <div id="deletePopup" class="popup-overlay">
+        <div class="small-card">
+          <h3>Delete this goal?</h3>
+          <div class="popup-actions">
+            <button class="secondary-btn" onclick="closeDeletePopup()">Cancel</button>
+            <button class="danger-btn" onclick="confirmDelete()">Delete</button>
+          </div>
+        </div>
       </div>
-    
-      <div class="info-box">
-        <h5>Sleep</h5>
-        <p>8 Hours</p>
-      </div>
-    
-     
-      <!-- </div> -->
-    
-      
+
     </div>
-    
-    </div>
-    <script src="script.js"></script>
+
+  </div>
+
+  <script src="dashboard.js"></script>
 </body>
-
 </html>

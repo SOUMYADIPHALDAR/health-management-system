@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="profile-container">
+  <div class="container">
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -20,45 +20,49 @@
         <h2 class="logo">Track Yourself</h2>
         <ul>
           <li><a href="dashboard.html"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-          <li class="active"><a><i class="fa-solid fa-user"></i>Profile</a></li>
-          <li><a href=""><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
           <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
-          <li><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+          <li class="active"><a><i class="fa-solid fa-user"></i>Profile</a></li>
+          <li><a href="signUp.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
         </ul>
       </div>
-
     </div>
 
     <!-- Main Section -->
     <div class="main">
       <div class="profile-card">
-      <img src="images/userimage.jpg" alt="User Photo" class="profile-pic" />
-      <h2 class="username">User Name</h2>
-      
-      <div class="user-status">
-        <div class="stat">
-          <h3>50kg</h3>
-          <p>Weight</p>
-        </div>
-        <div class="stat">
-          <h3>5.2ft</h3>
-          <p>Height</p>
-        </div>
-        <div class="stat">
-          <h3>22</h3>
-          <p>BMI</p>
-        </div>
-
+        <img src="images/userimage.jpg" alt="User Photo" class="profile-pic" />
+        <h2 class="username">User Name</h2>
         
-      </div>
-      <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+        <div class="user-status">
+          <div class="stat">
+            <h3>50kg</h3>
+            <p>Weight</p>
+          </div>
+          <div class="stat">
+            <h3>5.2ft</h3>
+            <p>Height</p>
+          </div>
+          <div class="stat">
+            <h3>22</h3>
+            <p>BMI</p>
+          </div>
+          <div class="stat">
+            <h3>20</h3>
+            <p>Age</p>
+          </div>
+        </div>
+        
       </div>
 
       <div class="info-card">
-      <h2>Personal Details</h2>
-      <p><strong>Email:</strong> username@example.com</p>
-      <p><strong>Age:</strong> 20</p>
-      <p><strong>Target:</strong> Build muscle & stay fit</p>
+        <h2>Personal Details</h2>
+       
+          <p><strong>Email:</strong> username@example.com</p>
+          <p><strong>Gender:</strong> Male</p>
+          <p><strong>Target:</strong> Build muscle & stay fit</p>
+        
+        <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+      </div>
     </div>
   </div>
 

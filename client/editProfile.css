@@ -15,7 +15,7 @@ body {
 }
 
 /* ======= Dashboard Layout ======= */
-.profile-container {
+.container {
   width: 1200px;
   height: 100%;
   display: flex;
@@ -86,7 +86,7 @@ body {
   padding: 1.5rem;
   text-align: center; 
   width: 100%;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 9px rgba(3, 8, 106, 0.541);
    
 }
 
@@ -135,8 +135,7 @@ body {
 label {
   font-weight: 500;
   color: #571084;
-
- margin: 0.3rem 0.5rem;
+  margin: 0.3rem 0.5rem;
 }
 
 
@@ -147,51 +146,35 @@ textarea {
   padding: 0.3rem 0.7rem;
   border-radius: 5px;
   border: none;
-  outline: none;
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  outline:none;
+  background-color: white;
+  color: #041d74;
+  box-shadow: 0 2px 5px rgba(177, 169, 229, 0.717);
   transition: 0.3s;
 }
 
 input:focus,
 textarea:focus {
   background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 45x 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Save button */
 .save-btn {
-  margin-top: 2.5rem ;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem ;
+  margin-bottom: 20px;
   text-align:center ;
   background:#4b4ded;
   color: white;
   border: none;
-  padding:0.8rem 1.5rem;
+  padding:0.5rem 1.5rem;
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background .2s ease;
 }
 
 .save-btn:hover {
- color: #063cff;
-  background-color: #d1dafb;
+ color: #fcfdfd;
+  background-color: #64358e;
 }
-
-
-/*===== Responsive Design===== */
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-    width: 95%;
-  }
-  .sidebar, .right-panel {
-    width: 100%;
-    border: none;
-  }
-}
-
-
-

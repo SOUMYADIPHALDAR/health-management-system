@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile</title>
+  <title>Edit Profile</title>
   <link rel="stylesheet" href="editProfile.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="profile-container">
+  <div class="container">
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -20,10 +20,9 @@
         <h2 class="logo">Track Yourself</h2>
         <ul>
           <li><a href="dashboard.html"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-          <li class="active"><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
-          <li><a href=""><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
           <li><a href=""><i class="fa-solid fa-bell"></i> Notifications</a></li>
-          <li><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+          <li class="active"><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
+          <li><a href="signUp.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
         </ul>
       </div>
 
@@ -40,27 +39,27 @@
             <input type="file" id="upload" accept="image/*" onchange="previewImage(event)" hidden />
           </div>
           <div class="info">
-          <label>Full Name</label>
+          <label>Full Name :</label>
           <input type="text" id="name" placeholder="your name" required />
           </div>
           <div class="info">
-          <label>Email</label>
+          <label>Email :</label>
           <input type="email" id="email" placeholder="sample@gmail.com" required />
           </div>
           <div class="info">
-          <label>Age</label>
+          <label>Age :</label>
           <input type="number" id="age" placeholder="your age" required />
           </div>
           <div class="info">
-          <label>Height (ft)</label>
+          <label>Height (ft) :</label>
           <input type="text" id="height" placeholder="your height" required />
           </div>
           <div class="info">
-          <label>Weight (kg)</label>
+          <label>Weight (kg) :</label>
           <input type="text" id="weight" placeholder="your weight" required />
           </div>
           <div class="info">
-          <label>Goal</label>
+          <label>Goal :</label>
           <textarea id="goal" rows="3" placeholder="type your goal"></textarea>
             </div>
           <button type="submit" class="save-btn" onclick="saveProfile()">Save Changes</button>
@@ -71,5 +70,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>

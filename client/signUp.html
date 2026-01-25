@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+</head>
+<body>
+  <div class="Container">
+        
+        <!-- Left Side -->
+        <div class="left">
+            <h2>Welcome!</h2>
+            <p>your journey to better health continues here.</p>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right">
+          <form id="signupForm">
+            <h2>Create Account</h2>
+
+            <div class="btn-social">
+                <button><i class="fa-brands fa-google"></i> Sign up with Google</button>
+                <button><i class="fa-brands fa-facebook"></i> Sign up with Facebook</button>
+            </div>
+
+            <div class="or">— OR —</div>
+            
+              <input id="name" type="text" placeholder="Full Name">
+              <input id="email" type="email" placeholder="Email Address">
+
+              <div class="password-field">
+                  <input type="password" id="password" placeholder="Password (atleast 6 characters)">
+                  <i class="fa-solid fa-eye" onclick="togglePassword()"></i>
+              </div>
+        <button type="submit" class="create-btn" >Create Account</button>
+            
+            <p class="login-text">Already have an Account? <a href="signIn.html">Log in</a></p>
+          </form>
+        </div>
+
+    </div>
+
+  <script src="script01.js"></script>
+</body>
+</html>

@@ -7,16 +7,15 @@
 }
 
 body {
-  background: #dee3f1;
+   background: #f4f6fc;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
+  min-height: 100vh;}
 
 /* ======= Dashboard Layout ======= */
-.dashboard-container {
-  width: 1200px;
+.container {
+   width: 1200px;
   height: 100%;
   display: flex;
   border-radius: 25px;
@@ -28,6 +27,7 @@ body {
 /* ======= Sidebar ======= */
 .sidebar {
   width: 220px;
+  height: 100vh;
   background: #f8f9ff;
   display: flex;
   flex-direction: column;
@@ -63,11 +63,13 @@ body {
 
 .sidebar ul li i{
   padding-right: 10px;
+  font-size: 20px;
+  color: #571084;
 }
 
 .sidebar ul li:hover,
 .sidebar ul li.active {
-  color: #4b4ded;
+   color: #571084;
   font-weight: 600;
 }
 
@@ -79,6 +81,7 @@ body {
   display: flex;
   flex-direction: column;
   background: #ffffff;
+  justify-content: space-between;
 }
 
 .main-header {
@@ -98,24 +101,24 @@ body {
 }
 
 .main-header img{
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
 }
 
 /*=== progress section === */
 .chart-section {
-  margin-top: 25px;
-  background: #ebeefe;
+  background: #eceefa;
   border-radius: 20px;
   padding: 20px 25px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 6px rgba(3, 3, 81, 0.936);
 }
 
 .chart-section h2 {
-  color: #4b4ded;
+  color: #3a3df2;
   font-size: 1.7rem;
    margin-top: 10px; 
 }
+
 
 .chart-section p {
   color: #505076;
@@ -123,9 +126,11 @@ body {
   margin-bottom:3rem;
 }
 
-.progrss-bar h3{
+.progress-bar h3{
   color: #571084;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .bar-bg {
@@ -140,7 +145,7 @@ margin: 15px 0;
 .bar-fill {
 width: 75%;
 height: 100%;
-background:#5a6bec;
+background:linear-gradient(to right, rgb(79, 48, 250), rgb(172, 44, 231), rgb(103, 19, 163));
 border-radius: 10px;
 }
 
@@ -149,7 +154,7 @@ border-radius: 10px;
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
-  gap: 15px;
+  gap: 20px;
 }
 
 .card {
@@ -158,7 +163,7 @@ border-radius: 10px;
   border-radius: 20px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(75, 77, 237, 0.08);
+  box-shadow: 0 3px 6px rgba(6, 6, 111, 0.831);
   transition: transform 0.2s ease;
 }
 
@@ -178,109 +183,231 @@ border-radius: 10px;
   margin-top: 5px;
 }
 
-/* ======= Right Panel ======= */
+
+
+/* ================= GOAL SECTION ================ */
 .right-panel {
-  width: 260px;
+  width: 250px;
   background: #f8f9ff;
-  padding: 25px 20px;
+  padding: 3rem 1.5rem;
   border-left: 1px solid #e0e4f2;
   display: flex;
   flex-direction: column;
-  gap : 20px;
 }
 
-.Goals h4 {
-  margin-top: 10px;
- color: #571084;
-  font-size: 1.3rem;
-}
-
-.Goals h4 i{
-  color: #063cff;
-  font-size: 20px;
-  margin-left: 20px;
-}
-
-/* ======= Info Boxes ======= */
-.info-box {
-  background: #ffffff;
-  border-radius: 15px;
-  padding: 15px;
-  margin-top: 15px;
-  box-shadow: 0 4px 10px rgba(75, 77, 237, 0.08);
-}
-
-.info-box h5 {
-  font-size: 0.9rem;
-  color: #7a7f9a;
-}
-
-.info-box p {
-  color: #4b4ded;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.add-btn {
-    font-size: 16px;
-  background:#4b4ded;
-  
-  color: white;
-  border: none;
-  padding:3px 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.add-btn:hover {
-  color: #063cff;
-  background-color: #d1dafb;
-}
-
-/* ======= Progress Circle ======= */
-.progress-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.progress-ring {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: conic-gradient(#4b4ded 270deg, #e6e8fa 0deg);
+/* Header */
+.goal-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  margin-bottom: 3rem;
 }
 
-.progress-ring span {
-  background: #fff;
-  border-radius: 50%;
-  padding: 25px;
+.goal-header h4 {
+  color: #571084;
+  font-size: 20px;
   font-weight: 600;
-  color: #4b4ded;
-  font-size: 1.2rem;
 }
 
-.progress-container small {
+.add-icon {
+  background:#571084;
+  padding: 5px 7px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-icon:hover {
+  background:#4b4ded;
+}
+
+/* Goal List */
+.goal-box {
+  list-style: none;
+}
+
+.goal-item {
+  background: #ffffff;
+  padding: 14px 18px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 8px rgba(6, 6, 111, 0.831);
+  transition: transform 0.2s ease;
+}
+
+.goal-item:hover {
+  transform: translateY(-2px);
+}
+
+
+.goal-text {
+  line-height: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.goal-text strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: #505076;
+}
+
+.goal-text small {
+  color:#4b4ded;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.delete-icon {
+  cursor: pointer;
+  font-size: 18px;
+  color: #a8a8b9;
+  transition: 0.2s;
+}
+
+.delete-icon:hover {
+  transform: scale(1.2);
+}
+
+
+/* Popups */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.616);
+  z-index: 1000;
+}
+
+.popup-card, .small-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 380px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.726);
+  animation: fadeIn 0.3s ease;
+}
+
+
+/* Popup Header */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-header h2{
+  color: #571084;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  font-size: 14px;
+  cursor: pointer;
+  color: rgb(151, 151, 151);
+  padding-bottom: 30px;
+}
+
+/* Inputs & Selects */
+.popup-body label {
   display: block;
-  margin-top: 8px;
-  color: #9fa3b9;
+  margin-bottom: 2px;
+  font-size: 14px;
+  color: #3a3df2;
+  font-weight: 600;
+}
+
+.popup-body input,
+.popup-body select {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 8px;
+  margin-top: 4px;
+  font-size: 14px;
+  color: #571084;
+}
+
+.popup-body select:focus,
+.popup-body input:focus {
+  border-color: #3a7afe;  
+  box-shadow: 0 0 5px rgba(58, 122, 254, 0.3);
+}
+ 
+.primary-btn{
+  width: 100%;
+  margin-top: 15px;
+  padding: 7px;
+  background: #571084;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+} 
+
+.primary-btn:hover{
+   background: #3a3df2;
+  color: #fff;
 }
 
 
-/*===== Responsive Design===== */
+.small-card h3{
+  text-align: center;
+  margin: 1rem 0;
+  color: #571084;
+}
 
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-    width: 95%;
-  }
-  .sidebar, .right-panel {
-    width: 100%;
-    border: none;
-  }
+.secondary-btn, .danger-btn{
+  padding: 7px 20px;
+  border-radius: 13px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  transform: 0.3s;
+  margin-top: 1rem;
+}
+
+.secondary-btn{
+  background-color: gray;
+  color: #fff;
+}
+  
+.secondary-btn:hover{
+  background-color: #ddd;
+  color: rgb(90, 89, 89);
+  font-weight: 600;
+}
+
+
+.danger-btn{
+  color: #fff;
+  background-color: rgb(211, 8, 8);
+}
+
+.danger-btn:hover{
+  color:rgb(211, 8, 8);
+  font-weight: 600;
+  background-color: #ddd;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 5.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
