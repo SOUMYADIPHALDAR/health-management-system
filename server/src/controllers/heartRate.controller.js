@@ -16,6 +16,7 @@ const addHeartRateRecords = asyncHandler(async(req, res) => {
 
     const record = await HeartRate.create({
         heartRate,
+        status,
         date: Date.now(),
         user: req.user._id
     });

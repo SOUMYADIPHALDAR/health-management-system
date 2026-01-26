@@ -6,12 +6,14 @@ const bodyTempSchema = new Schema ({
         type: Schema.Types.ObjectId,
         required: true
     },
-    temparature: {
+    bodyTemp: {
         type: Number,
+        default: 98,
         required: true
     },
     status:{
         type: String,
+        enum: ["Normal", "Hypothermia", "Fever"],
         required: true
     },
     date: {
