@@ -1,90 +1,93 @@
-// === sign up page ===
-// Select the form
-const form = document.getElementById("signupForm");
+// ================= SIGN UP =================
+  async function signup() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Stop form from reloading the page
+  if (!name || !email || !password) {
+    alert("Please fill all fields!");
+    return;
+  }
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+  try {
+    const res = await fetch("http://localhost:4000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    });
 
-    // Basic validation
-    if (name === "" || email === "" || password === "" || confirmPassword === "") {
-        alert("Please fill in all fields.");
-        return;
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Signup failed!");
+      return;
     }
 
-    if (!email.includes("@")) {
-        alert("Enter a valid email address.");
-        return;
+    alert("Signup successful! Please login.");
+    window.location.href = "login.html";
+
+  } catch (error) {
+    console.error("Signup error:", error);
+    alert("Server error! Is backend running?");
+  }
+}
+
+
+
+// ================= LOGIN =================
+async function login() {
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  if (!email || !password) {
+    alert("Please enter email and password!");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Login failed!");
+      return;
     }
 
-    if (password.length < 6) {
-        alert("Password must be at least 6 characters long.");
-        return;
-    }
+    localStorage.setItem("token", data.token || "");
+    localStorage.setItem("user", JSON.stringify(data.user || {}));
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-    }
-
-    // Success
-    alert("Account created successfully!");
-    
-    // Example: save data in localStorage
-    const user = { name, email, password };
-    localStorage.setItem("user", JSON.stringify(user));
-
-    // Redirect to login page (optional)
+    alert("Login successful!");
     window.location.href = "dashboard.html";
-});
+
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Server error! Is backend running?");
+  }
+}
 
 
 
-// === profile page ===
+
+// === PROFILE PAGE ===
 function editProfile() {
-      window.location.href = "editProfile.html";
-    }
+  window.location.href = "editProfile.html";
+}
 
-
-// === login page ===
- function login() {
-      const user = document.getElementById("email").value;
-      const pass = document.getElementById("password").value;
-
-      if (user && pass) {
-        // Redirect to dashboard
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Please enter Email Address and Password!");
-      }
-
-      if (!email.includes("@")) {
-        alert("Enter a valid email address.");
-        return;
-    }
-    }
-
-    function togglePassword() {
-        let pwd = document.getElementById("password");
-        if (pwd.type === "password") {
-            pwd.type = "text";
-        } else {
-            pwd.type = "password";
-        }
-      }
-
-      
-// === edit profile page ===
 function goBack() {
-      window.history.back();
-    }
+  window.history.back();
+}
 
-    function saveProfile() {
-      alert("Profile updated successfully!");
-      window.location.href ="profile.html"
-      return false; // Prevent actual form submission for demo
-    }
+function saveProfile() {
+  alert("Profile updated successfully!");
+  window.location.href = "profile.html";
+  return false;
+}
