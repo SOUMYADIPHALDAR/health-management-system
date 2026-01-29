@@ -1,48 +1,51 @@
 // ================= SIGN UP =================
-  async function signup() {
+async function signup(event) {
+  event.preventDefault();
+
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
-  if (!name || !email || !password) {
-    alert("Please fill all fields!");
-    return;
-  }
-
   try {
     const res = await fetch("http://localhost:4000/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, password })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName: name,
+        email,
+        password
+      })
     });
 
-    const data = await res.json();
+    const text = await res.text(); // 👈 read raw response
 
     if (!res.ok) {
-      alert(data.message || "Signup failed!");
+      alert("❌ " + text); // show backend error
       return;
     }
 
-    alert("Signup successful! Please login.");
-    window.location.href = "login.html";
+    const data = JSON.parse(text);
+    alert("✅ Signup successful!");
+    window.location.href = "dashboard.html";
 
-  } catch (error) {
-    console.error("Signup error:", error);
-    alert("Server error! Is backend running?");
+  } catch (err) {
+    console.error(err);
+    alert("Server error!");
   }
 }
 
 
 
+
 // ================= LOGIN =================
-async function login() {
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value.trim();
+async function login(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-    alert("Please enter email and password!");
+    alert("Please fill all fields!");
     return;
   }
 
@@ -52,6 +55,7 @@ async function login() {
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "include",
       body: JSON.stringify({ email, password })
     });
 
@@ -62,17 +66,15 @@ async function login() {
       return;
     }
 
-    localStorage.setItem("token", data.token || "");
-    localStorage.setItem("user", JSON.stringify(data.user || {}));
-
-    alert("Login successful!");
+    alert("Login successful 🎉");
     window.location.href = "dashboard.html";
 
   } catch (error) {
     console.error("Login error:", error);
-    alert("Server error! Is backend running?");
+    alert("Server error!");
   }
 }
+
 
 
 

@@ -16,10 +16,9 @@
             <h2>Welcome!</h2>
             <p>your journey to better health continues here.</p>
         </div>
-
         <!-- Right Side -->
         <div class="right">
-          <form id="signupForm">
+          <form id="signupForm" onsubmit="signup(event)">
             <h2>Create Account</h2>
 
             <div class="btn-social">
@@ -36,9 +35,9 @@
                   <input type="password" id="password" placeholder="Password (atleast 6 characters)">
                   <i class="fa-solid fa-eye" onclick="togglePassword()"></i>
               </div>
-        <button type="submit" class="create-btn" onclick="signup()">Create Account</button>
-            
-            <p class="login-text">Already have an Account? <a href="signIn.html">Log in</a></p>
+              <button type="submit" class="create-btn">Create Account</button>
+
+            <p class="login-text">Already have an Account? <a href="login.html">Log in</a></p>
           </form>
         </div>
 
