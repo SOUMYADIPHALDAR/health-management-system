@@ -8,10 +8,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    userName: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true
@@ -19,19 +15,6 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
-    },
-    avatar: {
-        type: String,
-        required: true
-    },
-    avatarPublicId: {
-        type: String,
-        required: true
-    },
-    gender:{
-        type: String,
-        enum: ["male", "female", "others"],
-        require: true
     },
     refreshToken:{
         type: String,
