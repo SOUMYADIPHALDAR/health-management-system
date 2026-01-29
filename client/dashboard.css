@@ -104,23 +104,26 @@ body {
 
 /*=== progress section === */
 .chart-section {
-  background: #eceefa;
+  background: linear-gradient(to bottom, #af99e4,#d1caff, #f1f3fa);
   border-radius: 20px;
-  padding: 20px 25px;
-  box-shadow: 0 1px 6px rgba(3, 3, 81, 0.936);
+  padding: 25px 25px;
+  box-shadow: 0 1px 6px rgba(3, 3, 81, 0.34);
 }
 
 .chart-section h2 {
-  color: #3a3df2;
+  color: #ffffff;
   font-size: 1.7rem;
-   margin-top: 10px; 
+   margin-top: 10px;
+   margin-bottom: 2px; 
+   font-weight: 700;
 }
 
 
 .chart-section p {
-  color: #505076;
+  color: #393963;
   font-size: 1rem;
   margin-bottom:3rem;
+  font-weight: 600;
 }
 
 .progress-bar h3{
