@@ -14,6 +14,7 @@ const tokenAccess = async (checkUserId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
+  console.log("REQ BODY =", req.body);
   const { fullName, email, password } = req.body;
   if (!fullName || !email || !password ) {
     throw new apiError(400, "All fields are required");
@@ -61,10 +62,13 @@ const loggedInUser = asyncHandler(async (req, res) => {
   const logedinUser = await User.findById(checkUser._id).select(
     "-password -refreshToken"
   );
+  
   const option = {
-    httpOnly: true,
-    secure: true,
-  };
+  httpOnly: true,
+  secure: false, // ✅ IMPORTANT for localhost
+  sameSite: "lax"
+};
+
   return res
     .status(200)
     .cookie("accessToken", accessToken, option)
@@ -180,3 +184,5 @@ module.exports = {
   refreshAccessToken,
   changePassword,
 };
+
+
