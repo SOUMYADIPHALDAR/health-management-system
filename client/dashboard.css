@@ -104,14 +104,14 @@ body {
 
 /*=== progress section === */
 .chart-section {
-  background: linear-gradient(to bottom, #af99e4,#d1caff, #f1f3fa);
+  background: linear-gradient(to bottom, #d1d7fa, #eff2fe);
   border-radius: 20px;
   padding: 25px 25px;
-  box-shadow: 0 1px 6px rgba(3, 3, 81, 0.34);
+  /* box-shadow: 0 0 4px rgba(6, 6, 76, 0.781); */
 }
 
 .chart-section h2 {
-  color: #ffffff;
+  color: #2124f7;
   font-size: 1.7rem;
    margin-top: 10px;
    margin-bottom: 2px; 
@@ -120,7 +120,7 @@ body {
 
 
 .chart-section p {
-  color: #393963;
+  color: #494968;
   font-size: 1rem;
   margin-bottom:3rem;
   font-weight: 600;
