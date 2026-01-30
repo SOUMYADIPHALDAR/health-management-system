@@ -65,6 +65,8 @@ async function login(event) {
       alert(data.message || "Login failed!");
       return;
     }
+    // ✅ Save username BEFORE redirect
+    localStorage.setItem("username", data.data.user.fullName || data.data.user.email);
 
     alert("Login successful 🎉");
     window.location.href = "dashboard.html";
@@ -73,6 +75,9 @@ async function login(event) {
     console.error("Login error:", error);
     alert("Server error!");
   }
+
+ 
+
 }
 
 
